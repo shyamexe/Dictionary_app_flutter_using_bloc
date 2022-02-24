@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lottie/lottie.dart';
 import 'package:one_dictionary/core/constants/widgets.dart';
 import 'package:one_dictionary/core/themes/app_theme.dart';
 import 'package:one_dictionary/data/data_providers/box.dart';
@@ -23,9 +24,9 @@ class HomeScreen extends StatelessWidget {
     }
   }
 
-  addWordToBox(String word,context){
+  addWordToBox(String word, context) {
     final box = Boxes.getWordToBox();
-    bool isSaved=false;
+    bool isSaved = false;
     final wordSave = WordSave()
       ..word = word
       ..saveDate = DateTime.now();
@@ -33,21 +34,18 @@ class HomeScreen extends StatelessWidget {
     List<WordSave> wordlist = box.values.toList();
 
     for (var i = 0; i < wordlist.length; i++) {
-      if(word==wordlist[i].word){
-        isSaved=true;
-        print('Is true');
+      if (word == wordlist[i].word) {
+        isSaved = true;
         continue;
       }
     }
 
-    if(!isSaved){
+    if (!isSaved) {
       box.add(wordSave);
-    }else{
+    } else {
       var snackBar = const SnackBar(content: Text('Already Added !'));
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
     }
-    
-    
   }
 
   player(List<Phonetics> list) async {
@@ -59,8 +57,7 @@ class HomeScreen extends StatelessWidget {
         continue;
       }
     }
-    int res = await audioPlayer.play(url ?? "");
-    if (res == 1) {}
+    await audioPlayer.play(url ?? "");
   }
 
   @override
@@ -69,6 +66,7 @@ class HomeScreen extends StatelessWidget {
 
     return SafeArea(
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: AppBar(
           title: const Text(
             '1Dictionary',
@@ -138,7 +136,8 @@ class HomeScreen extends StatelessWidget {
                             ),
                             IconButton(
                               onPressed: () {
-                                addWordToBox(searchState.data!.word.toString(),context);
+                                addWordToBox(
+                                    searchState.data!.word.toString(), context);
                               },
                               icon: const Icon(Icons.bookmark_outline),
                             )
@@ -146,46 +145,47 @@ class HomeScreen extends StatelessWidget {
                         ),
                       ),
                 Container(
-                    padding: const EdgeInsets.all(20),
-                    height: size.height / 1.646,
-                    child: searchState.data != null
-                        ? ListView.builder(
-                            physics: const BouncingScrollPhysics(
-                                parent: AlwaysScrollableScrollPhysics()),
-                            shrinkWrap: true,
-                            itemCount: searchState.data!.meanings!.length,
-                            itemBuilder: (context, i) {
-                              return Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  AppWidgets.sizeHeight10,
-                                  Text(
-                                    '${searchState.data!.meanings![i].partOfSpeech}',
-                                    style: MyTextStyle.bodyText1Bold,
-                                  ),
-                                  AppWidgets.sizeHeight10,
-                                  Text(
-                                    '${searchState.data!.meanings![i].definitions![0].definition}',
-                                    style: MyTextStyle.bodyText1,
-                                  ),
-                                  searchState.data!.meanings![i].definitions![0]
-                                              .example !=
-                                          null
-                                      ? AppWidgets.sizeHeight10
-                                      : const SizedBox(),
-                                  searchState.data!.meanings![i].definitions![0]
-                                              .example !=
-                                          null
-                                      ? Text(
-                                          'Example - ${searchState.data!.meanings![i].definitions![0].example}',
-                                          style: MyTextStyle.bodyText1,
-                                        )
-                                      : const SizedBox(),
-                                ],
-                              );
-                            },
-                          )
-                        : const SizedBox())
+                  padding: const EdgeInsets.all(20),
+                  height: size.height / 1.517,
+                  child: searchState.data != null
+                      ? ListView.builder(
+                          physics: const BouncingScrollPhysics(
+                              parent: AlwaysScrollableScrollPhysics()),
+                          shrinkWrap: true,
+                          itemCount: searchState.data!.meanings!.length,
+                          itemBuilder: (context, i) {
+                            return Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                AppWidgets.sizeHeight10,
+                                Text(
+                                  '${searchState.data!.meanings![i].partOfSpeech}',
+                                  style: MyTextStyle.bodyText1Bold,
+                                ),
+                                AppWidgets.sizeHeight10,
+                                Text(
+                                  '${searchState.data!.meanings![i].definitions![0].definition}',
+                                  style: MyTextStyle.bodyText1,
+                                ),
+                                searchState.data!.meanings![i].definitions![0]
+                                            .example !=
+                                        null
+                                    ? AppWidgets.sizeHeight10
+                                    : const SizedBox(),
+                                searchState.data!.meanings![i].definitions![0]
+                                            .example !=
+                                        null
+                                    ? Text(
+                                        'Example - ${searchState.data!.meanings![i].definitions![0].example}',
+                                        style: MyTextStyle.bodyText1,
+                                      )
+                                    : const SizedBox(),
+                              ],
+                            );
+                          },
+                        )
+                      : LottieBuilder.asset('assets/meditating.json'),
+                )
               ],
             );
           },

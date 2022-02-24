@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/intl.dart';
+import 'package:lottie/lottie.dart';
 
 import 'package:one_dictionary/core/constants/strings.dart';
 import 'package:one_dictionary/core/themes/app_theme.dart';
@@ -18,6 +19,7 @@ class SavedWordsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     List<WordSave> list = [];
     final DateFormat formatted = DateFormat('dd-MM-yy');
 
@@ -37,7 +39,8 @@ class SavedWordsScreen extends StatelessWidget {
               list = box.values.toList().cast<WordSave>();
               if (list.isNotEmpty) {
                 return ListView.builder(
-                  physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+                  physics: const BouncingScrollPhysics(
+                      parent: AlwaysScrollableScrollPhysics()),
                   shrinkWrap: true,
                   reverse: true,
                   itemCount: list.length,
@@ -59,7 +62,15 @@ class SavedWordsScreen extends StatelessWidget {
                   },
                 );
               } else {
-                return const Text('no data');
+                return Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      LottieBuilder.asset('assets/rolling.json',width: size.width*0.8),
+                      const Text('No words found !',style: MyTextStyle.bodyText1,)
+                    ],
+                  ),
+                );
               }
             },
           )),

@@ -32,6 +32,7 @@ class MainScreen extends StatelessWidget {
         NavigatorSelectionFlagState>(
       builder: (context, state) {
         return Scaffold(
+          resizeToAvoidBottomInset: false,
           body: screens[state.pageValue??1],
           bottomNavigationBar: BottomNavigationBar(
             elevation: 0,
