@@ -1,6 +1,11 @@
-# one_dictionary
+# Dictionary Flutter Application Using Bloc
 
-A new Flutter project.
+A simple dictionary app in flutter using bloc patern
+
+# Used API's
+
+- [Dictionary API](https://dictionaryapi.dev/)
+- [Datamuse API](https://www.datamuse.com/api/)
 
 ## Getting Started
 
