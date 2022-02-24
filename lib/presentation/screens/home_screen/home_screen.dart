@@ -55,11 +55,27 @@ class HomeScreen extends StatelessWidget {
                 Padding(
                     padding: const EdgeInsets.all(20),
                     child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        SizedBox(height: 55, width: size.width*0.7 ,child: textFieldWidget(context)),
-                        IconButton(
-                          onPressed: (){},
-                          icon:const Icon(Icons.check),
+                        SizedBox(
+                          height: 55,
+                          width: size.width * 0.75,
+                          child: textFieldWidget(context),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            onSearch(context);
+                            FocusScope.of(context).unfocus();
+                          },
+                          child: Container(
+                              color: Strings.appDarkBlue,
+                              height: 50,
+                              width: 55,
+                              child: const Icon(
+                                Icons.check,
+                                color: Color(0xFFFFFFFF),
+                              )),
                         )
                       ],
                     )),
