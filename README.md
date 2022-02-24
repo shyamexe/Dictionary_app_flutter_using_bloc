@@ -1,6 +1,6 @@
 # Dictionary Flutter Application Using Bloc
 
-A new Flutter project.
+A simple dictionary app in flutter using bloc patern
 
 # Used API's
 
