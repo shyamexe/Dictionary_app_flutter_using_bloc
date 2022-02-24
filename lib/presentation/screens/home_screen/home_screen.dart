@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:one_dictionary/core/constants/widgets.dart';
 import 'package:one_dictionary/core/themes/app_theme.dart';
+import 'package:one_dictionary/data/data_providers/box.dart';
 import 'package:one_dictionary/data/models/model.dart';
+import 'package:one_dictionary/data/models/word_save_model.dart';
 import 'package:one_dictionary/logic/search_word/search_word_cubit.dart';
 import 'package:audioplayers/audioplayers.dart';
 import '../../../core/constants/strings.dart';
@@ -19,6 +21,33 @@ class HomeScreen extends StatelessWidget {
       BlocProvider.of<SearchWordCubit>(context)
           .storeData(searchController.text);
     }
+  }
+
+  addWordToBox(String word,context){
+    final box = Boxes.getWordToBox();
+    bool isSaved=false;
+    final wordSave = WordSave()
+      ..word = word
+      ..saveDate = DateTime.now();
+
+    List<WordSave> wordlist = box.values.toList();
+
+    for (var i = 0; i < wordlist.length; i++) {
+      if(word==wordlist[i].word){
+        isSaved=true;
+        print('Is true');
+        continue;
+      }
+    }
+
+    if(!isSaved){
+      box.add(wordSave);
+    }else{
+      var snackBar = const SnackBar(content: Text('Already Added !'));
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    }
+    
+    
   }
 
   player(List<Phonetics> list) async {
@@ -90,7 +119,7 @@ class HomeScreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             Text(
-                              searchState.data!.word.toString(),
+                              "${searchState.data!.word}",
                               style: MyTextStyle.wordTitle,
                             ),
                             Text(
@@ -106,13 +135,19 @@ class HomeScreen extends StatelessWidget {
                                 Icons.volume_up_rounded,
                                 color: Strings.appMidGrey,
                               ),
+                            ),
+                            IconButton(
+                              onPressed: () {
+                                addWordToBox(searchState.data!.word.toString(),context);
+                              },
+                              icon: const Icon(Icons.bookmark_outline),
                             )
                           ],
                         ),
                       ),
                 Container(
                     padding: const EdgeInsets.all(20),
-                    height: size.height / 1.4,
+                    height: size.height / 1.646,
                     child: searchState.data != null
                         ? ListView.builder(
                             physics: const BouncingScrollPhysics(

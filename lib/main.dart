@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:one_dictionary/data/models/word_save_model.dart';
 import 'core/themes/app_theme.dart';
 import 'presentation/router/app_router.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
+  Hive.registerAdapter(WordSaveAdapter());
+  await Hive.openBox<WordSave>('WordSave');
+
   runApp(const App());
 }
 

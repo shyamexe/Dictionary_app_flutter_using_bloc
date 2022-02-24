@@ -1,0 +1,64 @@
+
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:one_dictionary/core/constants/strings.dart';
+import 'package:one_dictionary/logic/navigator_selection_flag_cubit/navigator_selection_flag_cubit.dart';
+import 'package:one_dictionary/logic/search_word/search_word_cubit.dart';
+import 'package:one_dictionary/presentation/screens/feed_screen/feed_screen.dart';
+import 'package:one_dictionary/presentation/screens/home_screen/home_screen.dart';
+import 'package:one_dictionary/presentation/screens/save_words_screen/saved_words_screen.dart';
+
+class MainScreen extends StatelessWidget {
+  MainScreen({Key? key}) : super(key: key);
+
+  List<Widget> screens = [
+    const FeedScreen(),
+
+    MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => SearchWordCubit(),
+        ),
+      ],
+      child: HomeScreen(),
+    ),
+    
+    SavedWordsScreen(),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<NavigatorSelectionFlagCubit,
+        NavigatorSelectionFlagState>(
+      builder: (context, state) {
+        return Scaffold(
+          body: screens[state.pageValue??1],
+          bottomNavigationBar: BottomNavigationBar(
+            elevation: 0,
+            selectedItemColor: Strings.appSoftBlue,
+            showSelectedLabels: false,
+            showUnselectedLabels: false,
+            currentIndex: state.pageValue??1,
+            onTap: (index){
+              context.read<NavigatorSelectionFlagCubit>().selectPage(index);
+            },
+            items: const [
+              BottomNavigationBarItem(
+                icon: Icon(Icons.dashboard_outlined),
+                label: "feed"
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.search),
+                label: 'search'
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.bookmarks_outlined),
+                label: 'saved words'
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+}
