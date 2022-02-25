@@ -11,14 +11,15 @@ A simple dictionary app in flutter using bloc patern
 
 <table>
   <td>
-   <img src="https://user-images.githubusercontent.com/93277108/155724357-95ee02f9-465b-4e0b-90e4-65c19b25d301.gif">
+   <img src="https://user-images.githubusercontent.com/93277108/155725925-a64782ab-6e82-4a6a-b014-adfc7847efa5.gif">
   </td>
   <td>
-   <img src="https://user-images.githubusercontent.com/93277108/155724507-d364c6df-05f7-4d42-83eb-793e4349b3d3.gif">
+   <img src="https://user-images.githubusercontent.com/93277108/155725698-c4ab9ca9-e90b-4867-8077-74dab1f95cef.gif">
   </td>
   <td>
-   <img src="https://user-images.githubusercontent.com/93277108/155724642-f60638f4-82be-4730-a6ee-1d8e4443e532.gif">
+   <img src="https://user-images.githubusercontent.com/93277108/155725225-b46c69d5-3e6b-41a2-8eb7-21b5ad4063a0.gif">
   </td>
+  
   
 </table>
 
