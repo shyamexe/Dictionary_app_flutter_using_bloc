@@ -22,8 +22,10 @@ class SearchWordCubit extends Cubit<SearchWordState> {
   SearchWordCubit() : super(SearchWordInitial());
 
   storeData(key) async {
+    print(key.toString());
     emit(SearchWordState(
       data: await ApiCallProvider().getWord(key),
+      
     ));
   }
 }
