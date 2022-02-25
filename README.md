@@ -11,7 +11,7 @@ A simple dictionary app in flutter using bloc patern
 
 <table>
   <td>
-   <img src="https://user-images.githubusercontent.com/93277108/155725925-a64782ab-6e82-4a6a-b014-adfc7847efa5.gif">
+   <img src="https://user-images.githubusercontent.com/93277108/155730025-5931a457-b82c-40cf-a3fd-65b21f706013.gif">
   </td>
   <td>
    <img src="https://user-images.githubusercontent.com/93277108/155725698-c4ab9ca9-e90b-4867-8077-74dab1f95cef.gif">
