@@ -18,14 +18,24 @@ class SearchWordState extends Equatable {
 
 class SearchWordInitial extends SearchWordState {}
 
+class SearchWordNotFound extends SearchWordState{}
+class SearchWordFailed extends SearchWordState{}
+
 class SearchWordCubit extends Cubit<SearchWordState> {
   SearchWordCubit() : super(SearchWordInitial());
 
   storeData(key) async {
-    print(key.toString());
-    emit(SearchWordState(
-      data: await ApiCallProvider().getWord(key),
-      
+    final data = await ApiCallProvider().getWord(key);
+    
+    if(data != null){
+      emit(SearchWordState(
+      data: data,
     ));
+    }else{
+      emit(SearchWordNotFound());
+      print('notfound');
+      emit(SearchWordFailed());
+    }
+
   }
 }

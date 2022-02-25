@@ -15,13 +15,17 @@ class ApiCallProvider {
       return RandomQuoteModel.fromJson(jsondata);
     // }
   }
-  Future <DictionaryModel> getWord(String key) async {
+  Future <DictionaryModel?> getWord(String key) async {
     var response = await http.get(Uri.parse(Strings.searchAPIUrl+key));
 
-    // if (response.statusCode == 200) {
+    if (response.statusCode == 200) {
       final jsondata = jsonDecode(response.body);
       return DictionaryModel.fromJson(jsondata[0]);
-    // }
+    }else{
+      // DictionaryModel data = DictionaryModel(word: 'No results found for $key',definitions: [],meanings: [],origin: '',phonetic: '');
+      // return data; 
+      return null;
+    }
   }
 
   Future <AutoWordModel>getAutoData(String word)async{
