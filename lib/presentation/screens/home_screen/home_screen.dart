@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
-import 'package:http/http.dart';
 import 'package:lottie/lottie.dart';
 import 'package:one_dictionary/core/constants/widgets.dart';
 import 'package:one_dictionary/core/themes/app_theme.dart';
-import 'package:one_dictionary/data/data_providers/api_call.dart';
 import 'package:one_dictionary/data/data_providers/box.dart';
 import 'package:one_dictionary/data/data_providers/data_suggestion.dart';
-import 'package:one_dictionary/data/models/auto_word_model.dart';
 import 'package:one_dictionary/data/models/model.dart';
 import 'package:one_dictionary/data/models/word_save_model.dart';
 import 'package:one_dictionary/logic/search_word/search_word_cubit.dart';
@@ -19,11 +16,12 @@ import '../../../core/constants/strings.dart';
 class HomeScreen extends StatelessWidget {
   final searchController = TextEditingController();
   AudioPlayer audioPlayer = AudioPlayer();
-
+  var focusNode = FocusNode();
   onSearch(context) {
-    if (searchController.text.isNotEmpty)
+    if (searchController.text.isNotEmpty){
       BlocProvider.of<SearchWordCubit>(context)
           .storeData(searchController.text);
+    }
   }
 
   addWordToBox(String word, context) {
@@ -110,6 +108,7 @@ class HomeScreen extends StatelessWidget {
               );
 
               ScaffoldMessenger.of(context).showSnackBar(snackBar);
+              FocusScope.of(context).requestFocus(focusNode);
             }
           },
           builder: (context, searchState) {
@@ -125,9 +124,15 @@ class HomeScreen extends StatelessWidget {
                             height: 55,
                             width: size.width * 0.75,
                             child: TypeAheadField(
+                              hideOnLoading: true,
                               textFieldConfiguration: TextFieldConfiguration(
+                                onEditingComplete: () {
+                                  onSearch(context);
+                                  FocusScope.of(context).unfocus();
+                                },
+                                focusNode: focusNode,
                                 controller: searchController,
-                                decoration: InputDecoration(
+                                decoration: const InputDecoration(
                                     border: OutlineInputBorder(),
                                     hintText: 'Search'),
                               ),
@@ -140,7 +145,8 @@ class HomeScreen extends StatelessWidget {
                                 return ListTile(
                                   title: Text(suggestion['name']!),
                                 );
-                              },
+                              }
+                              ,
                               onSuggestionSelected:
                                   (Map<String, String> suggestion) {
                                 searchController.text = suggestion['name']!;
@@ -196,7 +202,10 @@ class HomeScreen extends StatelessWidget {
                                 addWordToBox(
                                     searchState.data!.word.toString(), context);
                               },
-                              icon: const Icon(Icons.bookmark_outline,color: Strings.appMidGrey,),
+                              icon: const Icon(
+                                Icons.bookmark_outline,
+                                color: Strings.appMidGrey,
+                              ),
                             )
                           ],
                         ),
@@ -248,25 +257,6 @@ class HomeScreen extends StatelessWidget {
           },
         ),
       ),
-    );
-  }
-
-  TextField textFieldWidget(context) {
-    return TextField(
-      onEditingComplete: () {
-        onSearch(context);
-        FocusScope.of(context).unfocus();
-      },
-      textInputAction: TextInputAction.done,
-      // controller: searchController,
-      maxLines: 1,
-      decoration: const InputDecoration(
-          isDense: true,
-          filled: true,
-          prefixIcon: Icon(Icons.search),
-          hintText: 'Search',
-          border: OutlineInputBorder(
-              borderRadius: BorderRadius.zero, borderSide: BorderSide.none)),
     );
   }
 }
