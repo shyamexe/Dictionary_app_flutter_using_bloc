@@ -30,11 +30,11 @@ class FeedScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       ListTile(
-                        title: Text(
+                        title: SelectableText(
                           '  ${state.data!.content}',
                           style: MyTextStyle.bodyText1,
                         ),
-                        subtitle: Text(
+                        subtitle: SelectableText(
                           '${state.data!.author}',
                           style: const TextStyle(color: Strings.appBlue),
                           textAlign: TextAlign.right,

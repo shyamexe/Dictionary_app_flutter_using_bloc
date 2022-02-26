@@ -179,7 +179,7 @@ class HomeScreen extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            Text(
+                            SelectableText(
                               "${searchState.data!.word}",
                               style: MyTextStyle.wordTitle,
                             ),
@@ -224,12 +224,12 @@ class HomeScreen extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
                                 AppWidgets.sizeHeight10,
-                                Text(
+                                SelectableText(
                                   '${searchState.data!.meanings![i].partOfSpeech}',
                                   style: MyTextStyle.bodyText1Bold,
                                 ),
                                 AppWidgets.sizeHeight10,
-                                Text(
+                                SelectableText(
                                   '${searchState.data!.meanings![i].definitions![0].definition}',
                                   style: MyTextStyle.bodyText1,
                                 ),
@@ -241,7 +241,7 @@ class HomeScreen extends StatelessWidget {
                                 searchState.data!.meanings![i].definitions![0]
                                             .example !=
                                         null
-                                    ? Text(
+                                    ? SelectableText(
                                         'Example - ${searchState.data!.meanings![i].definitions![0].example}',
                                         style: MyTextStyle.bodyText1,
                                       )

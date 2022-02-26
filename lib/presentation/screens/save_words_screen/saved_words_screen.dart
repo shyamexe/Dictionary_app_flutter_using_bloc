@@ -46,7 +46,7 @@ class SavedWordsScreen extends StatelessWidget {
                   itemCount: list.length,
                   itemBuilder: (context, i) {
                     return ListTile(
-                        title: Text(
+                        title: SelectableText(
                           list[i].word,
                           style: MyTextStyle.bodyText1,
                         ),
