@@ -7,6 +7,22 @@ A simple dictionary app in flutter using bloc patern
 - [Dictionary API](https://dictionaryapi.dev/)
 - [Datamuse API](https://www.datamuse.com/api/)
 
+## Screenshots
+
+<table>
+  <td>
+   <img src="https://user-images.githubusercontent.com/93277108/155730025-5931a457-b82c-40cf-a3fd-65b21f706013.gif">
+  </td>
+  <td>
+   <img src="https://user-images.githubusercontent.com/93277108/155725698-c4ab9ca9-e90b-4867-8077-74dab1f95cef.gif">
+  </td>
+  <td>
+   <img src="https://user-images.githubusercontent.com/93277108/155725225-b46c69d5-3e6b-41a2-8eb7-21b5ad4063a0.gif">
+  </td>
+  
+  
+</table>
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
