@@ -2,7 +2,7 @@
 
 A simple dictionary app in flutter using bloc patern
 
-# Packages are we using
+## Packages are we using
 
 - [hive](https://pub.dev/packages/hive)
 - [audioplayers](https://pub.dev/packages/audioplayers)
@@ -13,7 +13,7 @@ A simple dictionary app in flutter using bloc patern
 - [share_plus](https://pub.dev/packages/share_plus)
 - [flutter_native_splash](https://pub.dev/packages/flutter_native_splash)
 
-# Used API's
+## Used API's
 
 - [Dictionary API](https://dictionaryapi.dev/)
 - [Datamuse API](https://www.datamuse.com/api/)
