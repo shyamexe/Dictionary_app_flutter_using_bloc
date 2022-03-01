@@ -2,7 +2,7 @@
 
 A simple dictionary app in flutter using bloc patern
 
-## Packages are we using
+## Packages we are using
 
 - [hive](https://pub.dev/packages/hive)
 - [audioplayers](https://pub.dev/packages/audioplayers)
