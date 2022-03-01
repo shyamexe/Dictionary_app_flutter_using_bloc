@@ -2,6 +2,17 @@
 
 A simple dictionary app in flutter using bloc patern
 
+# Packages are using
+
+- [hive](https://pub.dev/packages/hive)
+- [audioplayers](https://pub.dev/packages/audioplayers)
+- [equatable](https://pub.dev/packages/equatable)
+- [bloc](https://pub.dev/packages/bloc)
+- [lottie](https://pub.dev/packages/lottie)
+- [http](https://pub.dev/packages/http)
+- [share_plus](https://pub.dev/packages/share_plus)
+- [flutter_native_splash](https://pub.dev/packages/flutter_native_splash)
+
 # Used API's
 
 - [Dictionary API](https://dictionaryapi.dev/)
