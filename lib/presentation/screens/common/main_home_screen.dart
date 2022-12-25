@@ -7,6 +7,8 @@ import 'package:one_dictionary/presentation/screens/feed_screen/feed_screen.dart
 import 'package:one_dictionary/presentation/screens/home_screen/home_screen.dart';
 import 'package:one_dictionary/presentation/screens/save_words_screen/saved_words_screen.dart';
 
+import 'widgets/app_drawer.dart';
+
 class MainScreen extends StatelessWidget {
   MainScreen({Key? key}) : super(key: key);
   static List<String> appTitles = ['1Dictionary', '1Dictionary', 'Saved Words'];
@@ -36,12 +38,9 @@ class MainScreen extends StatelessWidget {
         NavigatorSelectionFlagState>(
       builder: (context, state) {
         return Scaffold(
-
-          drawer: Container(
-            color: Colors.red,
-          ),
+          drawer: const AppDrawer(),
           appBar: AppBar(
-            iconTheme: IconThemeData(color:  Theme.of(context).primaryColor),
+            iconTheme: IconThemeData(color: Theme.of(context).primaryColor),
             backgroundColor: Colors.transparent,
             elevation: 0,
             title: Text(
@@ -49,7 +48,6 @@ class MainScreen extends StatelessWidget {
               style: TextStyle(color: Theme.of(context).primaryColor),
             ),
           ),
-          
           resizeToAvoidBottomInset: false,
           body: screens[state.pageValue ?? 1],
           bottomNavigationBar: BottomNavigationBar(
@@ -65,11 +63,17 @@ class MainScreen extends StatelessWidget {
             },
             items: const [
               BottomNavigationBarItem(
-                  icon: Icon(Icons.dashboard_outlined), label: "feed"),
+                icon: Icon(Icons.dashboard_outlined),
+                label: "feed",
+              ),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.search), label: 'Dictionary'),
+                icon: Icon(Icons.search),
+                label: 'Dictionary',
+              ),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.bookmarks_outlined), label: 'saved words'),
+                icon: Icon(Icons.bookmarks_outlined),
+                label: 'saved words',
+              ),
             ],
           ),
         );

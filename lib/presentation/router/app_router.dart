@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:one_dictionary/logic/navigator_selection_flag_cubit/navigator_selection_flag_cubit.dart';
 import 'package:one_dictionary/logic/search_word/search_word_cubit.dart';
+import 'package:one_dictionary/logic/theme_cubit/theme_cubit.dart';
 import 'package:one_dictionary/presentation/screens/common/main_home_screen.dart';
 import '../../core/exceptions/route_exception.dart';
 import '../screens/home_screen/home_screen.dart';
@@ -16,10 +17,14 @@ class AppRouter {
     switch (settings.name) {
       case home:
         return MaterialPageRoute(
-          builder: (_) => MultiBlocProvider(
+          builder: (context) => MultiBlocProvider(
             providers: [
               BlocProvider(
                 create: (context) => NavigatorSelectionFlagCubit(),
+              ),
+              BlocProvider.value(
+                value: context.read<ThemeCubit>
+                (),
               ),
               
             ],
