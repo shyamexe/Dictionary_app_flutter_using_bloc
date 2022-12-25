@@ -23,14 +23,7 @@ class SavedWordsScreen extends StatelessWidget {
 
     return SafeArea(
       child: Scaffold(
-          appBar: AppBar(
-            title: Text(
-              'Saved Words',
-              style: TextStyle(color: Theme.of(context).primaryColor),
-            ),
-            backgroundColor: Colors.transparent,
-            elevation: 0,
-          ),
+        
           body: ValueListenableBuilder<Box<WordSave>>(
             valueListenable: Boxes.getWordToBox().listenable(),
             builder: (context, box, _) {

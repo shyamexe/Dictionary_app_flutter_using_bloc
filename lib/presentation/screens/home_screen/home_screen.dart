@@ -83,14 +83,7 @@ class HomeScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
-        appBar: AppBar(
-          title: Text(
-            '1Dictionary',
-            style: TextStyle(color: Theme.of(context).primaryColor),
-          ),
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-        ),
+        
         body: BlocConsumer<SearchWordCubit, SearchWordState>(
           listener: (context, state) {
             if (state is SearchWordNotFound) {

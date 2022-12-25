@@ -10,21 +10,12 @@ class FeedScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-        title:  Text(
-          '1Dictionary',
-          style: TextStyle(color: Theme.of(context).primaryColor),
-        ),
-      ),
+    return SafeArea(child: Scaffold(
       body: BlocBuilder<RandomQuoteCubit, RandomQuoteState>(
         builder: (context, state) {
           return state.data != null
               ? Padding(
-                  padding:  EdgeInsets.all(20.w),
+                  padding: EdgeInsets.all(20.w),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -46,20 +37,26 @@ class FeedScreen extends StatelessWidget {
                             onPressed: () {
                               context.read<RandomQuoteCubit>().generate();
                             },
-                            icon:  Icon(Icons.replay,color: Theme.of(context).primaryColor),
+                            icon: Icon(Icons.replay,
+                                color: Theme.of(context).primaryColor),
                           ),
                           IconButton(
                             onPressed: () {
-                              Share.share('${state.data!.content} \n - ${state.data!.author}');
+                              Share.share(
+                                  '${state.data!.content} \n - ${state.data!.author}');
                             },
-                            icon:  Icon(Icons.ios_share,color: Theme.of(context).primaryColor),
+                            icon: Icon(Icons.ios_share,
+                                color: Theme.of(context).primaryColor),
                           )
                         ],
                       )
                     ],
                   ),
                 )
-              : const Center(child: CircularProgressIndicator(color: Strings.appMidGrey,));
+              : const Center(
+                  child: CircularProgressIndicator(
+                  color: Strings.appMidGrey,
+                ));
         },
       ),
     ));

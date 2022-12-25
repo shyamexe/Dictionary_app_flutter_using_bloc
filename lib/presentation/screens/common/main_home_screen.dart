@@ -9,6 +9,7 @@ import 'package:one_dictionary/presentation/screens/save_words_screen/saved_word
 
 class MainScreen extends StatelessWidget {
   MainScreen({Key? key}) : super(key: key);
+  static List<String> appTitles = ['1Dictionary', '1Dictionary', 'Saved Words'];
 
   List<Widget> screens = [
     BlocProvider(
@@ -35,6 +36,20 @@ class MainScreen extends StatelessWidget {
         NavigatorSelectionFlagState>(
       builder: (context, state) {
         return Scaffold(
+
+          drawer: Container(
+            color: Colors.red,
+          ),
+          appBar: AppBar(
+            iconTheme: IconThemeData(color:  Theme.of(context).primaryColor),
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+            title: Text(
+              appTitles[state.pageValue ?? 1],
+              style: TextStyle(color: Theme.of(context).primaryColor),
+            ),
+          ),
+          
           resizeToAvoidBottomInset: false,
           body: screens[state.pageValue ?? 1],
           bottomNavigationBar: BottomNavigationBar(
