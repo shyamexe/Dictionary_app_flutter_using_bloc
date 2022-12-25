@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:lottie/lottie.dart';
 import 'package:one_dictionary/core/constants/widgets.dart';
-import 'package:one_dictionary/core/themes/app_theme.dart';
 import 'package:one_dictionary/data/data_providers/box.dart';
 import 'package:one_dictionary/data/data_providers/data_suggestion.dart';
 import 'package:one_dictionary/data/models/model.dart';
@@ -13,11 +12,14 @@ import 'package:one_dictionary/logic/search_word/search_word_cubit.dart';
 import 'package:audioplayers/audioplayers.dart';
 import '../../../core/constants/strings.dart';
 
+
 // ignore: must_be_immutable
 class HomeScreen extends StatelessWidget {
   final searchController = TextEditingController();
   AudioPlayer audioPlayer = AudioPlayer();
   var focusNode = FocusNode();
+
+  HomeScreen({Key? key}) : super(key: key);
   onSearch(context) {
     if (searchController.text.isNotEmpty) {
       BlocProvider.of<SearchWordCubit>(context)
@@ -81,14 +83,7 @@ class HomeScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
-        appBar: AppBar(
-          title: Text(
-            '1Dictionary',
-            style: TextStyle(color: Theme.of(context).primaryColor),
-          ),
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-        ),
+        
         body: BlocConsumer<SearchWordCubit, SearchWordState>(
           listener: (context, state) {
             if (state is SearchWordNotFound) {

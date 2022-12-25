@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:one_dictionary/core/constants/strings.dart';
 
 class AppTheme {
   const AppTheme._();
@@ -13,18 +12,18 @@ class AppTheme {
       scaffoldBackgroundColor: const Color(0XFFE8F6EF),
       textTheme: TextTheme(
           headline1: TextStyle(
-            fontSize: 20.sp,
+            fontSize: 15.sp.sp,
             color: const Color(0xff50577A),
           ),
           headline2: TextStyle(
-            fontSize: 30.sp,
+            fontSize: 20.sp,
             color: const Color(0xff50577A),
             fontWeight: FontWeight.bold,
           ),
-          bodyText1: TextStyle(fontSize: 18.sp, color: const Color(0xff50577A)),
-          bodyText2: TextStyle(fontSize: 16.sp, color: const Color(0xff50577A)),
+          bodyText1: TextStyle(fontSize: 14.sp, color: const Color(0xff50577A)),
+          bodyText2: TextStyle(fontSize: 12.sp, color: const Color(0xff50577A)),
           headline6: TextStyle(
-              fontSize: 18.sp,
+              fontSize: 16.sp,
               fontWeight: FontWeight.bold,
               color: const Color(0xff50577A))));
 
@@ -37,19 +36,19 @@ class AppTheme {
       scaffoldBackgroundColor: const Color(0XFF404258),
       textTheme: TextTheme(
           headline1: TextStyle(
-            fontSize: 25.sp,
+            fontSize: 15.sp,
             fontWeight: FontWeight.bold,
             color: const Color(0xffE8F6EF),
           ),
           headline2: TextStyle(
-            fontSize: 30.sp,
+            fontSize: 20.sp,
             color: const Color(0xffE8F6EF),
             fontWeight: FontWeight.bold,
           ),
-          bodyText1: TextStyle(fontSize: 18.sp, color: const Color(0xffE8F6EF)),
-          bodyText2: TextStyle(fontSize: 16.sp, color: const Color(0xffE8F6EF)),
+          bodyText1: TextStyle(fontSize: 14.sp, color: const Color(0xffE8F6EF)),
+          bodyText2: TextStyle(fontSize: 12.sp, color: const Color(0xffE8F6EF)),
           headline6: TextStyle(
-              fontSize: 18.sp,
+              fontSize: 16.sp,
               fontWeight: FontWeight.bold,
               color: const Color(0xffE8F6EF))));
 }

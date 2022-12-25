@@ -10,9 +10,9 @@ class AutoWordModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['word'] = this.word;
-    data['score'] = this.score;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['word'] = word;
+    data['score'] = score;
     return data;
   }
 
