@@ -83,9 +83,9 @@ class HomeScreen extends StatelessWidget {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
-          title: const Text(
+          title:  Text(
             '1Dictionary',
-            style: TextStyle(color: Strings.appDarkBlue),
+            style: TextStyle(color: Theme.of(context).primaryColor),
           ),
           backgroundColor: Colors.transparent,
           elevation: 0,
@@ -133,8 +133,36 @@ class HomeScreen extends StatelessWidget {
                                 },
                                 focusNode: focusNode,
                                 controller: searchController,
-                                decoration: const InputDecoration(
-                                    border: OutlineInputBorder(),
+                                style: Theme.of(context).textTheme.bodyText2,
+                                decoration:  InputDecoration(
+                                  filled: true,
+                                  fillColor: Theme.of(context).canvasColor,
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(18),
+                                      borderSide: BorderSide.none
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(18),
+                                      borderSide: BorderSide.none
+                                    ),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(18),
+                                      borderSide: BorderSide.none
+                                    ),
+                                    focusedErrorBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(18),
+                                      borderSide: BorderSide.none
+                                    ),
+                                    errorBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(18),
+                                      borderSide: BorderSide.none
+                                    ),
+                                    disabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(18),
+                                      borderSide: BorderSide.none
+                                    ),
+                                    
+                                    hintStyle: Theme.of(context).textTheme.bodyText2,
                                     hintText: 'Search'),
                               ),
                               suggestionsCallback: (Pattern) async {
@@ -144,7 +172,7 @@ class HomeScreen extends StatelessWidget {
                               itemBuilder:
                                   (context, Map<String, String> suggestion) {
                                 return ListTile(
-                                  title: Text(suggestion['name']!),
+                                  title: Text(suggestion['name']!,style: Theme.of(context).textTheme.bodyText2,),
                                 );
                               },
                               onSuggestionSelected:
@@ -153,21 +181,21 @@ class HomeScreen extends StatelessWidget {
                                 onSearch(context);
                               },
                             )),
-                        InkWell(
-                          onTap: () {
-                            onSearch(context);
-                            FocusScope.of(context).unfocus();
-                          },
-                          child: Container(
-                            color: Strings.appDarkBlue,
-                            height: 50,
-                            width: 55,
-                            child: const Icon(
-                              Icons.check,
-                              color: Color(0xFFFFFFFF),
-                            ),
-                          ),
-                        )
+                        // InkWell(
+                        //   onTap: () {
+                        //     onSearch(context);
+                        //     FocusScope.of(context).unfocus();
+                        //   },
+                        //   child: Container(
+                        //     color: Strings.appDarkBlue,
+                        //     height: 50,
+                        //     width: 55,
+                        //     child: const Icon(
+                        //       Icons.check,
+                        //       color: Color(0xFFFFFFFF),
+                        //     ),
+                        //   ),
+                        // )
                       ],
                     )),
                 const SizedBox(
@@ -182,20 +210,21 @@ class HomeScreen extends StatelessWidget {
                           children: [
                             SelectableText(
                               "${searchState.data!.word}",
-                              style: MyTextStyle.wordTitle,
+                              style:Theme.of(context).textTheme.headline1,
+                              
                             ),
                             Text(
                               searchState.data!.phonetics![0].text.toString(),
-                              style: MyTextStyle.notationTitle,
+                              style:Theme.of(context).textTheme.headline1,
                               overflow: TextOverflow.ellipsis,
                             ),
                             IconButton(
                               onPressed: () {
                                 player(searchState.data!.phonetics!);
                               },
-                              icon: const Icon(
+                              icon:  Icon(
                                 Icons.volume_up_rounded,
-                                color: Strings.appMidGrey,
+                                color:Theme.of(context).primaryColor,
                               ),
                             ),
                             IconButton(
@@ -203,9 +232,9 @@ class HomeScreen extends StatelessWidget {
                                 addWordToBox(
                                     searchState.data!.word.toString(), context);
                               },
-                              icon: const Icon(
+                              icon:  Icon(
                                 Icons.bookmark_outline,
-                                color: Strings.appMidGrey,
+                                color: Theme.of(context).primaryColor,
                               ),
                             )
                           ],
@@ -216,6 +245,7 @@ class HomeScreen extends StatelessWidget {
                   height: size.height / 1.517,
                   child: searchState.data != null
                       ? ListView.builder(
+                        padding: EdgeInsets.symmetric(horizontal: 20),
                           physics: const BouncingScrollPhysics(
                               parent: AlwaysScrollableScrollPhysics()),
                           shrinkWrap: true,
@@ -227,12 +257,12 @@ class HomeScreen extends StatelessWidget {
                                 AppWidgets.sizeHeight10,
                                 SelectableText(
                                   '${searchState.data!.meanings![i].partOfSpeech}',
-                                  style: MyTextStyle.bodyText1Bold,
+                                  style: Theme.of(context).textTheme.headline6,
                                 ),
                                 AppWidgets.sizeHeight10,
                                 SelectableText(
                                   '${searchState.data!.meanings![i].definitions![0].definition}',
-                                  style: MyTextStyle.bodyText1,
+                                  style: Theme.of(context).textTheme.bodyText1,
                                 ),
                                 searchState.data!.meanings![i].definitions![0]
                                             .example !=
@@ -244,7 +274,7 @@ class HomeScreen extends StatelessWidget {
                                         null
                                     ? SelectableText(
                                         'Example - ${searchState.data!.meanings![i].definitions![0].example}',
-                                        style: MyTextStyle.bodyText1,
+                                        style: Theme.of(context).textTheme.bodyText1,
                                       )
                                     : const SizedBox(),
                               ],

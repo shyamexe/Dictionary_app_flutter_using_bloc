@@ -39,8 +39,10 @@ class MainScreen extends StatelessWidget {
           resizeToAvoidBottomInset: false,
           body: screens[state.pageValue ?? 1],
           bottomNavigationBar: BottomNavigationBar(
+            backgroundColor: Theme.of(context).canvasColor,
             elevation: 0,
-            selectedItemColor: Strings.appSoftBlue,
+            selectedItemColor: Theme.of(context).primaryColor,
+            unselectedItemColor: Colors.grey.shade400,
             showSelectedLabels: false,
             showUnselectedLabels: false,
             currentIndex: state.pageValue ?? 1,

@@ -26,9 +26,9 @@ class SavedWordsScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
           appBar: AppBar(
-            title: const Text(
+            title: Text(
               'Saved Words',
-              style: TextStyle(color: Strings.appDarkBlue),
+              style: TextStyle(color: Theme.of(context).primaryColor),
             ),
             backgroundColor: Colors.transparent,
             elevation: 0,
@@ -48,12 +48,18 @@ class SavedWordsScreen extends StatelessWidget {
                     return ListTile(
                         title: SelectableText(
                           list[i].word,
-                          style: MyTextStyle.bodyText1,
+                          style: Theme.of(context).textTheme.bodyText1,
                         ),
-                        subtitle: Text(formatted.format(list[i].saveDate)),
+                        subtitle: Text(
+                          formatted.format(
+                            list[i].saveDate,
+                          ),
+                          style: Theme.of(context).textTheme.bodyText2,
+                        ),
                         trailing: IconButton(
-                          icon: const Icon(
+                          icon:  Icon(
                             Icons.delete_outline,
+                            color: Theme.of(context).primaryColor,
                           ),
                           onPressed: () {
                             deleteWord(list[i].key);
@@ -66,8 +72,12 @@ class SavedWordsScreen extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      LottieBuilder.asset('assets/rolling.json',width: size.width*0.8),
-                      const Text('No words found !',style: MyTextStyle.bodyText1,)
+                      LottieBuilder.asset('assets/rolling.json',
+                          width: size.width * 0.8),
+                      Text(
+                        'No words found !',
+                        style: Theme.of(context).textTheme.bodyText1,
+                      )
                     ],
                   ),
                 );
