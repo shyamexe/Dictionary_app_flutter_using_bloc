@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
+// import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:lottie/lottie.dart';
 import 'package:one_dictionary/core/constants/widgets.dart';
 import 'package:one_dictionary/core/themes/app_theme.dart';
@@ -18,7 +19,7 @@ class HomeScreen extends StatelessWidget {
   AudioPlayer audioPlayer = AudioPlayer();
   var focusNode = FocusNode();
   onSearch(context) {
-    if (searchController.text.isNotEmpty){
+    if (searchController.text.isNotEmpty) {
       BlocProvider.of<SearchWordCubit>(context)
           .storeData(searchController.text);
     }
@@ -145,8 +146,7 @@ class HomeScreen extends StatelessWidget {
                                 return ListTile(
                                   title: Text(suggestion['name']!),
                                 );
-                              }
-                              ,
+                              },
                               onSuggestionSelected:
                                   (Map<String, String> suggestion) {
                                 searchController.text = suggestion['name']!;
@@ -159,13 +159,14 @@ class HomeScreen extends StatelessWidget {
                             FocusScope.of(context).unfocus();
                           },
                           child: Container(
-                              color: Strings.appDarkBlue,
-                              height: 50,
-                              width: 55,
-                              child: const Icon(
-                                Icons.check,
-                                color: Color(0xFFFFFFFF),
-                              )),
+                            color: Strings.appDarkBlue,
+                            height: 50,
+                            width: 55,
+                            child: const Icon(
+                              Icons.check,
+                              color: Color(0xFFFFFFFF),
+                            ),
+                          ),
                         )
                       ],
                     )),
