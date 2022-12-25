@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:one_dictionary/core/constants/strings.dart';
 import 'package:one_dictionary/core/themes/app_theme.dart';
 import 'package:one_dictionary/logic/random_word/random_quote_cubit.dart';
@@ -25,7 +26,7 @@ class FeedScreen extends StatelessWidget {
         builder: (context, state) {
           return state.data != null
               ? Padding(
-                  padding: const EdgeInsets.all(20),
+                  padding:  EdgeInsets.all(20.w),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [

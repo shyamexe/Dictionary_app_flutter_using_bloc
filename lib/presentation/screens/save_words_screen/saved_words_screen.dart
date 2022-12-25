@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
@@ -19,7 +20,6 @@ class SavedWordsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     List<WordSave> list = [];
     final DateFormat formatted = DateFormat('dd-MM-yy');
 
@@ -57,7 +57,7 @@ class SavedWordsScreen extends StatelessWidget {
                           style: Theme.of(context).textTheme.bodyText2,
                         ),
                         trailing: IconButton(
-                          icon:  Icon(
+                          icon: Icon(
                             Icons.delete_outline,
                             color: Theme.of(context).primaryColor,
                           ),
@@ -72,8 +72,7 @@ class SavedWordsScreen extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      LottieBuilder.asset('assets/rolling.json',
-                          width: size.width * 0.8),
+                      LottieBuilder.asset('assets/rolling.json', width: 250.w),
                       Text(
                         'No words found !',
                         style: Theme.of(context).textTheme.bodyText1,
