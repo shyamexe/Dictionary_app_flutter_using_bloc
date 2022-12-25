@@ -16,9 +16,9 @@ class FeedScreen extends StatelessWidget {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.transparent,
-        title: const Text(
+        title:  Text(
           '1Dictionary',
-          style: TextStyle(color: Strings.appDarkBlue),
+          style: TextStyle(color: Theme.of(context).primaryColor),
         ),
       ),
       body: BlocBuilder<RandomQuoteCubit, RandomQuoteState>(
@@ -32,11 +32,11 @@ class FeedScreen extends StatelessWidget {
                       ListTile(
                         title: SelectableText(
                           '  ${state.data!.content}',
-                          style: MyTextStyle.bodyText1,
+                          style: Theme.of(context).textTheme.bodyText1,
                         ),
                         subtitle: SelectableText(
                           '${state.data!.author}',
-                          style: const TextStyle(color: Strings.appBlue),
+                          style: Theme.of(context).textTheme.bodyText1,
                           textAlign: TextAlign.right,
                         ),
                       ),
@@ -47,13 +47,13 @@ class FeedScreen extends StatelessWidget {
                             onPressed: () {
                               context.read<RandomQuoteCubit>().generate();
                             },
-                            icon: const Icon(Icons.replay,color: Colors.grey),
+                            icon:  Icon(Icons.replay,color: Theme.of(context).primaryColor),
                           ),
                           IconButton(
                             onPressed: () {
                               Share.share('${state.data!.content} \n - ${state.data!.author}');
                             },
-                            icon: const Icon(Icons.ios_share,color: Colors.grey),
+                            icon:  Icon(Icons.ios_share,color: Theme.of(context).primaryColor),
                           )
                         ],
                       )
