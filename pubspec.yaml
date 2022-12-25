@@ -39,7 +39,7 @@ dependencies:
   equatable: ^2.0.3
   http: ^0.13.4
   path_provider: ^2.0.9
-  share_plus: ^3.1.0
+  share_plus: ^6.3.0
   hive: ^2.0.5
   hive_flutter: ^1.1.0
   intl: ^0.17.0
