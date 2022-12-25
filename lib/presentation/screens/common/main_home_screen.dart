@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:one_dictionary/core/constants/strings.dart';
 import 'package:one_dictionary/logic/navigator_selection_flag_cubit/navigator_selection_flag_cubit.dart';
 import 'package:one_dictionary/logic/random_word/random_quote_cubit.dart';
 import 'package:one_dictionary/logic/search_word/search_word_cubit.dart';
@@ -27,7 +26,7 @@ class MainScreen extends StatelessWidget {
       ],
       child: HomeScreen(),
     ),
-    SavedWordsScreen(),
+    const SavedWordsScreen(),
   ];
 
   @override

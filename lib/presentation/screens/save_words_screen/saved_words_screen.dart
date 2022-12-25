@@ -4,8 +4,6 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 
-import 'package:one_dictionary/core/constants/strings.dart';
-import 'package:one_dictionary/core/themes/app_theme.dart';
 import 'package:one_dictionary/data/data_providers/box.dart';
 
 import '../../../data/models/word_save_model.dart';

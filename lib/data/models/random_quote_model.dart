@@ -30,15 +30,15 @@ class RandomQuoteModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['_id'] = this.sId;
-    data['tags'] = this.tags;
-    data['content'] = this.content;
-    data['author'] = this.author;
-    data['authorSlug'] = this.authorSlug;
-    data['length'] = this.length;
-    data['dateAdded'] = this.dateAdded;
-    data['dateModified'] = this.dateModified;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['_id'] = sId;
+    data['tags'] = tags;
+    data['content'] = content;
+    data['author'] = author;
+    data['authorSlug'] = authorSlug;
+    data['length'] = length;
+    data['dateAdded'] = dateAdded;
+    data['dateModified'] = dateModified;
     return data;
   }
 
