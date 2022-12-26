@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:one_dictionary/logic/navigator_selection_flag_cubit/navigator_selection_flag_cubit.dart';
 import 'package:one_dictionary/logic/random_word/random_quote_cubit.dart';
 import 'package:one_dictionary/logic/search_word/search_word_cubit.dart';
@@ -9,6 +11,7 @@ import 'package:one_dictionary/presentation/screens/save_words_screen/saved_word
 
 import 'widgets/app_drawer.dart';
 
+// ignore: must_be_immutable
 class MainScreen extends StatelessWidget {
   MainScreen({Key? key}) : super(key: key);
   static List<String> appTitles = ['1Dictionary', '1Dictionary', 'Saved Words'];
@@ -50,31 +53,54 @@ class MainScreen extends StatelessWidget {
           ),
           resizeToAvoidBottomInset: false,
           body: screens[state.pageValue ?? 1],
-          bottomNavigationBar: BottomNavigationBar(
-            backgroundColor: Theme.of(context).canvasColor,
-            elevation: 0,
-            selectedItemColor: Theme.of(context).primaryColor,
-            unselectedItemColor: Colors.grey.shade400,
-            showSelectedLabels: false,
-            showUnselectedLabels: false,
-            currentIndex: state.pageValue ?? 1,
-            onTap: (index) {
-              context.read<NavigatorSelectionFlagCubit>().selectPage(index);
-            },
-            items: const [
-              BottomNavigationBarItem(
-                icon: Icon(Icons.dashboard_outlined),
-                label: "feed",
+          bottomNavigationBar: Container(
+            decoration: BoxDecoration(
+              color: Theme.of(context).canvasColor,
+              boxShadow: [
+                BoxShadow(
+                  blurRadius: 20.w,
+                  color: Colors.black.withOpacity(.1),
+                )
+              ],
+            ),
+            child: SafeArea(
+              child: Padding(
+                padding:
+                    EdgeInsets.symmetric(horizontal: 15.0.w, vertical: 8.h),
+                child: GNav(
+                  rippleColor: Theme.of(context).focusColor,
+                  hoverColor: Theme.of(context).hoverColor,
+                  gap: 8.w,
+                  activeColor: Theme.of(context).primaryColor,
+                  iconSize: 24.sp,
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
+                  duration: const Duration(milliseconds: 400),
+                  tabBackgroundColor:  Theme.of(context).bottomAppBarColor,
+                  color: Theme.of(context).primaryColor,
+                  tabs: const [
+                    GButton(
+                      icon: Icons.dashboard_outlined,
+                      text: 'Home',
+                    ),
+                    GButton(
+                      icon: Icons.search,
+                      text: 'Likes',
+                    ),
+                    GButton(
+                      icon: Icons.bookmarks_outlined,
+                      text: 'Search',
+                    ),
+                  ],
+                  selectedIndex: state.pageValue ?? 1,
+                  onTabChange: (index) {
+                    context
+                        .read<NavigatorSelectionFlagCubit>()
+                        .selectPage(index);
+                  },
+                ),
               ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.search),
-                label: 'Dictionary',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.bookmarks_outlined),
-                label: 'saved words',
-              ),
-            ],
+            ),
           ),
         );
       },
