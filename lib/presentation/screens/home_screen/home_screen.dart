@@ -83,7 +83,6 @@ class HomeScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
-        
         body: BlocConsumer<SearchWordCubit, SearchWordState>(
           listener: (context, state) {
             if (state is SearchWordNotFound) {
@@ -118,7 +117,6 @@ class HomeScreen extends StatelessWidget {
                         children: [
                           SizedBox(
                               height: 50.h,
-                              //sdhgiuadgfiuadg
                               width: 270.w,
                               child: TypeAheadField(
                                 hideOnLoading: true,
