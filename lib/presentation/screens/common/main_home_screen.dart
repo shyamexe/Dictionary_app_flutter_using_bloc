@@ -76,20 +76,26 @@ class MainScreen extends StatelessWidget {
                   padding:
                       EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
                   duration: const Duration(milliseconds: 400),
-                  tabBackgroundColor:  Theme.of(context).bottomAppBarColor,
+                  tabBackgroundColor: Theme.of(context).bottomAppBarColor,
                   color: Theme.of(context).primaryColor,
-                  tabs: const [
+                  tabs: [
                     GButton(
                       icon: Icons.dashboard_outlined,
                       text: 'Home',
+                      iconSize: 18.sp,
+                      textSize: 12.sp,
                     ),
                     GButton(
                       icon: Icons.search,
                       text: 'Likes',
+                      iconSize: 18.sp,
+                      textSize: 12.sp,
                     ),
                     GButton(
                       icon: Icons.bookmarks_outlined,
                       text: 'Search',
+                      iconSize: 18.sp,
+                      textSize: 12.sp,
                     ),
                   ],
                   selectedIndex: state.pageValue ?? 1,
