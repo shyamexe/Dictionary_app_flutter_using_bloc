@@ -97,9 +97,13 @@ class HomeScreen extends StatelessWidget {
 
   List<WordSave> list = [];
 
-  deleteWord(key) {
+  deleteWord(word) {
     final box = Boxes.getWordToBox();
-    box.delete(key);
+    box.values.toList().forEach((element) {
+      if (word==element.word) {
+        box.delete(element.key);
+      }
+    });
   }
 
   @override
@@ -254,7 +258,7 @@ class HomeScreen extends StatelessWidget {
                                 builder: (context, box, _) {
                                   list = box.values.toList().cast<WordSave>();
                                   var contain = list.where((element) =>
-                                      element.word == searchController.text);
+                                      element.word == searchState.data!.word.toString());
                                   if (contain.isEmpty) {
                                     return IconButton(
                                       onPressed: () {
@@ -265,7 +269,7 @@ class HomeScreen extends StatelessWidget {
                                             context);
                                       },
                                       icon: Icon(
-                                        Icons.bookmark_add,
+                                        Icons.bookmark_border,
                                         color: Theme.of(context).primaryColor,
                                       ),
                                     );
@@ -277,9 +281,10 @@ class HomeScreen extends StatelessWidget {
                                       ),
                                       onPressed: () {
                                         //deleteWord(list[i].key);
-                                        createSnackBar(
-                                            context: context,
-                                            message: "aaallReady exist");
+                                        deleteWord(searchState.data!.word.toString());
+                                        // createSnackBar(
+                                        //     context: context,
+                                        //     message: "aaallReady exist");
                                       },
                                     );
                                   }
