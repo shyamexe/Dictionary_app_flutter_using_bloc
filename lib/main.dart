@@ -7,7 +7,7 @@ import 'package:one_dictionary/logic/theme_cubit/theme_cubit.dart';
 import 'core/themes/app_theme.dart';
 import 'presentation/router/app_router.dart';
 
-List theme=[
+List theme = [
   ThemeMode.dark,
   ThemeMode.light,
   ThemeMode.system,
@@ -37,13 +37,13 @@ class App extends StatelessWidget {
           return BlocBuilder<ThemeCubit, ThemeState>(
             builder: (context, state) {
               return MaterialApp(
-                      theme: AppTheme.lightTheme,
-                      darkTheme: AppTheme.darkTheme,
-                      themeMode:theme[state.theme],
-                      debugShowCheckedModeBanner: false,
-                      initialRoute: AppRouter.home,
-                      onGenerateRoute: AppRouter.onGenerateRoute,
-                    );
+                theme: AppTheme.lightTheme,
+                darkTheme: AppTheme.darkTheme,
+                themeMode: theme[state.theme],
+                debugShowCheckedModeBanner: false,
+                initialRoute: AppRouter.home,
+                onGenerateRoute: AppRouter.onGenerateRoute,
+              );
             },
           );
         },

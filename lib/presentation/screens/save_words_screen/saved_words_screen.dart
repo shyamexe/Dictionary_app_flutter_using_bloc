@@ -23,7 +23,6 @@ class SavedWordsScreen extends StatelessWidget {
 
     return SafeArea(
       child: Scaffold(
-        
           body: ValueListenableBuilder<Box<WordSave>>(
             valueListenable: Boxes.getWordToBox().listenable(),
             builder: (context, box, _) {
