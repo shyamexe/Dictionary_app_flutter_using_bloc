@@ -62,7 +62,6 @@ class HomeScreen extends StatelessWidget {
       box.add(wordSave);
     } else {
       // var snackBar = const SnackBar(content: Text('Already Added !'));
-
       // var snackBar = SnackBar(
       //   content: Text(
       //     'Already Added !',
@@ -279,7 +278,7 @@ class HomeScreen extends StatelessWidget {
                                         //deleteWord(list[i].key);
                                         createSnackBar(
                                             context: context,
-                                            message: "aaallReady exist");
+                                            message: "Already Added !");
                                       },
                                     );
                                   }
