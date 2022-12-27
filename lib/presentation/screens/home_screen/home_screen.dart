@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:lottie/lottie.dart';
 import 'package:one_dictionary/core/constants/widgets.dart';
 import 'package:one_dictionary/data/data_providers/box.dart';
@@ -12,7 +13,6 @@ import 'package:one_dictionary/logic/search_word/search_word_cubit.dart';
 import 'package:audioplayers/audioplayers.dart';
 import '../../../core/constants/strings.dart';
 
-
 // ignore: must_be_immutable
 class HomeScreen extends StatelessWidget {
   final searchController = TextEditingController();
@@ -20,11 +20,25 @@ class HomeScreen extends StatelessWidget {
   var focusNode = FocusNode();
 
   HomeScreen({Key? key}) : super(key: key);
+
   onSearch(context) {
     if (searchController.text.isNotEmpty) {
       BlocProvider.of<SearchWordCubit>(context)
           .storeData(searchController.text);
     }
+  }
+
+  void createSnackBar(
+      {required String message, required BuildContext context}) {
+    final snackBar = SnackBar(
+        content: Text(
+          message,
+          style: TextStyle(color: Theme.of(context).primaryColor),
+        ),
+        backgroundColor: Theme.of(context).canvasColor);
+
+    // Find the Scaffold in the Widget tree and use it to show a SnackBar!
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
   addWordToBox(String word, context) {
@@ -41,6 +55,7 @@ class HomeScreen extends StatelessWidget {
         isSaved = true;
         continue;
       }
+      createSnackBar(message: 'Added to Saved List', context: context);
     }
 
     if (!isSaved) {
@@ -48,22 +63,24 @@ class HomeScreen extends StatelessWidget {
     } else {
       // var snackBar = const SnackBar(content: Text('Already Added !'));
 
-      var snackBar = SnackBar(
-        content: const Text(
-          'Already Added !',
-          style: TextStyle(
-            fontSize: 20,
-          ),
-          textAlign: TextAlign.center,
-        ),
-        behavior: SnackBarBehavior.floating,
-        backgroundColor: Strings.appSoftBlue,
-        elevation: 0,
-        margin: EdgeInsets.symmetric(
-            vertical: MediaQuery.of(context).size.height * 0.4.h,
-            horizontal: 20.w),
-      );
-      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      // var snackBar = SnackBar(
+      //   content: Text(
+      //     'Already Added !',
+      //     style: TextStyle(
+      //       fontSize: 20.sp,
+      //     ),
+      //     textAlign: TextAlign.center,
+      //   ),
+      //   behavior: SnackBarBehavior.floating,
+      //   backgroundColor: Strings.appSoftBlue,
+      //   elevation: 0,
+      //   margin: EdgeInsets.symmetric(
+      //       vertical: MediaQuery.of(context).size.height * 0.4.h,
+      //       horizontal: 20.w),
+      // );
+      // ScaffoldMessenger.of(context).showSnackBar(snackBar);
+
+      createSnackBar(message: 'Already Added !', context: context);
     }
   }
 
@@ -76,6 +93,13 @@ class HomeScreen extends StatelessWidget {
       }
     }
     await audioPlayer.play(url ?? "");
+  }
+
+  List<WordSave> list = [];
+
+  deleteWord(key) {
+    final box = Boxes.getWordToBox();
+    box.delete(key);
   }
 
   @override
@@ -224,17 +248,54 @@ class HomeScreen extends StatelessWidget {
                                   color: Theme.of(context).primaryColor,
                                 ),
                               ),
-                              IconButton(
-                                onPressed: () {
-                                  addWordToBox(
-                                      searchState.data!.word.toString(),
-                                      context);
+                              ValueListenableBuilder<Box<WordSave>>(
+                                valueListenable:
+                                    Boxes.getWordToBox().listenable(),
+                                builder: (context, box, _) {
+                                  list = box.values.toList().cast<WordSave>();
+                                  var contain = list.where((element) =>
+                                      element.word == searchController.text);
+                                  if (contain.isEmpty) {
+                                    return IconButton(
+                                      onPressed: () {
+                                        print("print");
+                                        print(contain);
+                                        addWordToBox(
+                                            searchState.data!.word.toString(),
+                                            context);
+                                      },
+                                      icon: Icon(
+                                        Icons.bookmark_add,
+                                        color: Theme.of(context).primaryColor,
+                                      ),
+                                    );
+                                  } else {
+                                    return IconButton(
+                                      icon: Icon(
+                                        Icons.bookmark_outlined,
+                                        color: Theme.of(context).primaryColor,
+                                      ),
+                                      onPressed: () {
+                                        //deleteWord(list[i].key);
+                                        createSnackBar(
+                                            context: context,
+                                            message: "aaallReady exist");
+                                      },
+                                    );
+                                  }
                                 },
-                                icon: Icon(
-                                  Icons.bookmark_outline,
-                                  color: Theme.of(context).primaryColor,
-                                ),
-                              )
+                              ),
+                              // IconButton(
+                              //   onPressed: () {
+                              //     addWordToBox(
+                              //         searchState.data!.word.toString(),
+                              //         context);
+                              //   },
+                              //   icon: Icon(
+                              //     Icons.bookmark_outline,
+                              //     color: Theme.of(context).primaryColor,
+                              //   ),
+                              // )
                             ],
                           ),
                         ),
