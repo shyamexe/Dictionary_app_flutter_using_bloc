@@ -62,7 +62,6 @@ class HomeScreen extends StatelessWidget {
       box.add(wordSave);
     } else {
       // var snackBar = const SnackBar(content: Text('Already Added !'));
-
       // var snackBar = SnackBar(
       //   content: Text(
       //     'Already Added !',
