@@ -61,24 +61,6 @@ class HomeScreen extends StatelessWidget {
     if (!isSaved) {
       box.add(wordSave);
     } else {
-      // var snackBar = const SnackBar(content: Text('Already Added !'));
-      // var snackBar = SnackBar(
-      //   content: Text(
-      //     'Already Added !',
-      //     style: TextStyle(
-      //       fontSize: 20.sp,
-      //     ),
-      //     textAlign: TextAlign.center,
-      //   ),
-      //   behavior: SnackBarBehavior.floating,
-      //   backgroundColor: Strings.appSoftBlue,
-      //   elevation: 0,
-      //   margin: EdgeInsets.symmetric(
-      //       vertical: MediaQuery.of(context).size.height * 0.4.h,
-      //       horizontal: 20.w),
-      // );
-      // ScaffoldMessenger.of(context).showSnackBar(snackBar);
-
       createSnackBar(message: 'Already Added !', context: context);
     }
   }
@@ -99,7 +81,7 @@ class HomeScreen extends StatelessWidget {
   deleteWord(word) {
     final box = Boxes.getWordToBox();
     box.values.toList().forEach((element) {
-      if (word==element.word) {
+      if (word == element.word) {
         box.delete(element.key);
       }
     });
@@ -156,6 +138,25 @@ class HomeScreen extends StatelessWidget {
                                   controller: searchController,
                                   style: Theme.of(context).textTheme.bodyText2,
                                   decoration: InputDecoration(
+                                      suffixIcon: searchController
+                                              .text.isNotEmpty
+                                          ? InkWell(
+                                              onTap: () {
+                                                searchController.clear();
+                                                BlocProvider.of<
+                                                            SearchWordCubit>(
+                                                        context)
+                                                    .onClearText(
+                                                        searchController.text);
+                                              },
+                                              child: Icon(
+                                                Icons.close,
+                                                size: 15.sp,
+                                              ),
+                                            )
+                                          : SizedBox(
+                                              width: 0.h,
+                                            ),
                                       filled: true,
                                       fillColor: Theme.of(context).canvasColor,
                                       border: OutlineInputBorder(
@@ -257,12 +258,11 @@ class HomeScreen extends StatelessWidget {
                                 builder: (context, box, _) {
                                   list = box.values.toList().cast<WordSave>();
                                   var contain = list.where((element) =>
-                                      element.word == searchState.data!.word.toString());
+                                      element.word ==
+                                      searchState.data!.word.toString());
                                   if (contain.isEmpty) {
                                     return IconButton(
                                       onPressed: () {
-                                        print("print");
-                                        print(contain);
                                         addWordToBox(
                                             searchState.data!.word.toString(),
                                             context);
@@ -279,27 +279,13 @@ class HomeScreen extends StatelessWidget {
                                         color: Theme.of(context).primaryColor,
                                       ),
                                       onPressed: () {
-                                        //deleteWord(list[i].key);
-                                        deleteWord(searchState.data!.word.toString());
-                                        // createSnackBar(
-                                        //     context: context,
-                                        //     message: "aaallReady exist");
+                                        deleteWord(
+                                            searchState.data!.word.toString());
                                       },
                                     );
                                   }
                                 },
                               ),
-                              // IconButton(
-                              //   onPressed: () {
-                              //     addWordToBox(
-                              //         searchState.data!.word.toString(),
-                              //         context);
-                              //   },
-                              //   icon: Icon(
-                              //     Icons.bookmark_outline,
-                              //     color: Theme.of(context).primaryColor,
-                              //   ),
-                              // )
                             ],
                           ),
                         ),

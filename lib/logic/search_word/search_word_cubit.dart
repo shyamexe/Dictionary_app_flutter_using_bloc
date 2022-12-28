@@ -38,4 +38,7 @@ class SearchWordCubit extends Cubit<SearchWordState> {
     }
 
   }
+  onClearText(key) {
+    emit(SearchWordInitial());
+  }
 }
