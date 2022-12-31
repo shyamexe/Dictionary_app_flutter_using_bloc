@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class AppTheme {
   const AppTheme._();
@@ -17,19 +17,19 @@ class AppTheme {
       bottomAppBarColor: Colors.grey[100]!,
       scaffoldBackgroundColor: const Color(0XFFE8F6EF),
       textTheme: TextTheme(
-          headline1: TextStyle(
-            fontSize: 15.sp.sp,
+          headline1: GoogleFonts.rajdhani(
+            fontSize: 15,
             color: const Color(0xff50577A),
           ),
-          headline2: TextStyle(
-            fontSize: 20.sp,
+          headline2: GoogleFonts.rajdhani(
+            fontSize: 20,
             color: const Color(0xff50577A),
             fontWeight: FontWeight.bold,
           ),
-          bodyText1: TextStyle(fontSize: 14.sp, color: const Color(0xff50577A)),
-          bodyText2: TextStyle(fontSize: 12.sp, color: const Color(0xff50577A)),
-          headline6: TextStyle(
-              fontSize: 16.sp,
+          bodyText1: GoogleFonts.rajdhani(fontSize: 14, color: const Color(0xff50577A)),
+          bodyText2: GoogleFonts.rajdhani(fontSize: 12, color: const Color(0xff50577A)),
+          headline6: GoogleFonts.rajdhani(
+              fontSize: 16,
               fontWeight: FontWeight.bold,
               color: const Color(0xff50577A))));
 
@@ -47,20 +47,20 @@ class AppTheme {
       //tabBackgroundColor as bottomAppBarColor
       bottomAppBarColor: Colors.white10,
       textTheme: TextTheme(
-          headline1: TextStyle(
-            fontSize: 15.sp,
+          headline1: GoogleFonts.rajdhani(
+            fontSize: 15,
             fontWeight: FontWeight.bold,
             color: const Color(0xffE8F6EF),
           ),
-          headline2: TextStyle(
-            fontSize: 20.sp,
+          headline2: GoogleFonts.rajdhani(
+            fontSize: 20,
             color: const Color(0xffE8F6EF),
             fontWeight: FontWeight.bold,
           ),
-          bodyText1: TextStyle(fontSize: 14.sp, color: const Color(0xffE8F6EF)),
-          bodyText2: TextStyle(fontSize: 12.sp, color: const Color(0xffE8F6EF)),
-          headline6: TextStyle(
-              fontSize: 16.sp,
+          bodyText1: GoogleFonts.rajdhani(fontSize: 14, color: const Color(0xffE8F6EF)),
+          bodyText2: GoogleFonts.rajdhani(fontSize: 12, color: const Color(0xffE8F6EF)),
+          headline6: GoogleFonts.rajdhani(
+              fontSize: 16,
               fontWeight: FontWeight.bold,
               color: const Color(0xffE8F6EF))));
 }

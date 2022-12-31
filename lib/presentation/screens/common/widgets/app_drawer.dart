@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:one_dictionary/logic/theme_cubit/theme_cubit.dart';
 
 class AppDrawer extends StatelessWidget {
@@ -23,13 +22,13 @@ class AppDrawer extends StatelessWidget {
                 collapsedIconColor: Theme.of(context).primaryColor,
               )),
           child: Container(
-            width: 260.w,
+            width: 260,
             color: Theme.of(context).canvasColor,
             child: SafeArea(
               child: Column(
                 children: [
                   SizedBox(
-                    height: 130.h,
+                    height: 130,
                   ),
                   ExpansionTile(
                     title: Text(
@@ -48,8 +47,8 @@ class AppDrawer extends StatelessWidget {
                             },
                             child: Container(
                               margin: EdgeInsets.symmetric(
-                                  horizontal: 20.w, vertical: 5.w),
-                              height: 30.h,
+                                  horizontal: 20, vertical: 5),
+                              height: 30,
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(9),
                                   border: Border.all(
