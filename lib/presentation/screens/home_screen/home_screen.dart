@@ -1,6 +1,6 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:lottie/lottie.dart';
@@ -99,7 +99,7 @@ class HomeScreen extends StatelessWidget {
                 content: Text(
                   'No results found for ${searchController.text}',
                   style: TextStyle(
-                    fontSize: 20.sp,
+                    fontSize: 20,
                   ),
                   textAlign: TextAlign.center,
                 ),
@@ -107,7 +107,7 @@ class HomeScreen extends StatelessWidget {
                 backgroundColor: Strings.appSoftBlue,
                 elevation: 0,
                 //size changed
-                margin: EdgeInsets.symmetric(vertical: 20.h, horizontal: 20.w),
+                margin: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
               );
 
               ScaffoldMessenger.of(context).showSnackBar(snackBar);
@@ -115,227 +115,240 @@ class HomeScreen extends StatelessWidget {
             }
           },
           builder: (context, searchState) {
-            return SingleChildScrollView(
-              child: Column(
-                children: [
-                  Padding(
-                      padding: EdgeInsets.all(20.w),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SizedBox(
-                              height: 50.h,
-                              width: 270.w,
-                              child: TypeAheadField(
-                                hideOnLoading: true,
-                                textFieldConfiguration: TextFieldConfiguration(
-                                  onEditingComplete: () {
-                                    onSearch(context);
-                                    FocusScope.of(context).unfocus();
+            return ScrollConfiguration(
+              behavior: ScrollConfiguration.of(context).copyWith(dragDevices: {
+                PointerDeviceKind.touch,
+                PointerDeviceKind.mouse
+              }),
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    Padding(
+                        padding: EdgeInsets.all(20),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SizedBox(
+                                height: 50,
+                                width: 270,
+                                child: TypeAheadField(
+                                  hideOnLoading: true,
+                                  textFieldConfiguration:
+                                      TextFieldConfiguration(
+                                    onEditingComplete: () {
+                                      onSearch(context);
+                                      FocusScope.of(context).unfocus();
+                                    },
+                                    focusNode: focusNode,
+                                    controller: searchController,
+                                    style:
+                                        Theme.of(context).textTheme.bodyText2,
+                                    decoration: InputDecoration(
+                                        suffixIcon:
+                                            searchController.text.isNotEmpty
+                                                ? InkWell(
+                                                    onTap: () {
+                                                      searchController.clear();
+                                                      BlocProvider.of<
+                                                                  SearchWordCubit>(
+                                                              context)
+                                                          .onClearText(
+                                                              searchController
+                                                                  .text);
+                                                    },
+                                                    child: Icon(
+                                                      Icons.close,
+                                                      size: 15,
+                                                    ),
+                                                  )
+                                                : SizedBox(
+                                                    width: 0,
+                                                  ),
+                                        filled: true,
+                                        fillColor:
+                                            Theme.of(context).canvasColor,
+                                        border: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(18),
+                                            borderSide: BorderSide.none),
+                                        focusedBorder: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(18),
+                                            borderSide: BorderSide.none),
+                                        enabledBorder: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(18),
+                                            borderSide: BorderSide.none),
+                                        focusedErrorBorder: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(18),
+                                            borderSide: BorderSide.none),
+                                        errorBorder: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(18),
+                                            borderSide: BorderSide.none),
+                                        disabledBorder: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(18),
+                                            borderSide: BorderSide.none),
+                                        hintStyle: Theme.of(context)
+                                            .textTheme
+                                            .bodyText2,
+                                        hintText: 'Search'),
+                                  ),
+                                  suggestionsCallback: (pattern) async {
+                                    return await BackendService.getSuggestions(
+                                        pattern);
                                   },
-                                  focusNode: focusNode,
-                                  controller: searchController,
-                                  style: Theme.of(context).textTheme.bodyText2,
-                                  decoration: InputDecoration(
-                                      suffixIcon: searchController
-                                              .text.isNotEmpty
-                                          ? InkWell(
-                                              onTap: () {
-                                                searchController.clear();
-                                                BlocProvider.of<
-                                                            SearchWordCubit>(
-                                                        context)
-                                                    .onClearText(
-                                                        searchController.text);
-                                              },
-                                              child: Icon(
-                                                Icons.close,
-                                                size: 15.sp,
-                                              ),
-                                            )
-                                          : SizedBox(
-                                              width: 0.h,
-                                            ),
-                                      filled: true,
-                                      fillColor: Theme.of(context).canvasColor,
-                                      border: OutlineInputBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(18.w),
-                                          borderSide: BorderSide.none),
-                                      focusedBorder: OutlineInputBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(18.w),
-                                          borderSide: BorderSide.none),
-                                      enabledBorder: OutlineInputBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(18.w),
-                                          borderSide: BorderSide.none),
-                                      focusedErrorBorder: OutlineInputBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(18.w),
-                                          borderSide: BorderSide.none),
-                                      errorBorder: OutlineInputBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(18.w),
-                                          borderSide: BorderSide.none),
-                                      disabledBorder: OutlineInputBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(18.w),
-                                          borderSide: BorderSide.none),
-                                      hintStyle:
-                                          Theme.of(context).textTheme.bodyText2,
-                                      hintText: 'Search'),
-                                ),
-                                suggestionsCallback: (pattern) async {
-                                  return await BackendService.getSuggestions(
-                                      pattern);
-                                },
-                                itemBuilder:
-                                    (context, Map<String, String> suggestion) {
-                                  return ListTile(
-                                    title: Text(
-                                      suggestion['name']!,
-                                      style:
-                                          Theme.of(context).textTheme.bodyText2,
-                                    ),
-                                  );
-                                },
-                                onSuggestionSelected:
-                                    (Map<String, String> suggestion) {
-                                  searchController.text = suggestion['name']!;
-                                  onSearch(context);
-                                },
-                              )),
-                          // InkWell(
-                          //   onTap: () {
-                          //     onSearch(context);
-                          //     FocusScope.of(context).unfocus();
-                          //   },
-                          //   child: Container(
-                          //     color: Strings.appDarkBlue,
-                          //     height: 50,
-                          //     width: 55,
-                          //     child: const Icon(
-                          //       Icons.check,
-                          //       color: Color(0xFFFFFFFF),
-                          //     ),
-                          //   ),
-                          // )
-                        ],
-                      )),
-                  SizedBox(
-                    height: 20.h,
-                  ),
-                  searchState.data == null
-                      ? const SizedBox()
-                      : SizedBox(
-                          width: 360.w,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              SelectableText(
-                                "${searchState.data!.word}",
-                                style: Theme.of(context).textTheme.headline1,
-                              ),
-                              Text(
-                                searchState.data!.phonetics![0].text.toString(),
-                                style: Theme.of(context).textTheme.headline1,
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                              IconButton(
-                                onPressed: () {
-                                  player(searchState.data!.phonetics!);
-                                },
-                                icon: Icon(
-                                  Icons.volume_up_rounded,
-                                  color: Theme.of(context).primaryColor,
-                                ),
-                              ),
-                              ValueListenableBuilder<Box<WordSave>>(
-                                valueListenable:
-                                    Boxes.getWordToBox().listenable(),
-                                builder: (context, box, _) {
-                                  list = box.values.toList().cast<WordSave>();
-                                  var contain = list.where((element) =>
-                                      element.word ==
-                                      searchState.data!.word.toString());
-                                  if (contain.isEmpty) {
-                                    return IconButton(
-                                      onPressed: () {
-                                        addWordToBox(
-                                            searchState.data!.word.toString(),
-                                            context);
-                                      },
-                                      icon: Icon(
-                                        Icons.bookmark_border,
-                                        color: Theme.of(context).primaryColor,
+                                  itemBuilder: (context,
+                                      Map<String, String> suggestion) {
+                                    return ListTile(
+                                      title: Text(
+                                        suggestion['name']!,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyText2,
                                       ),
                                     );
-                                  } else {
-                                    return IconButton(
-                                      icon: Icon(
-                                        Icons.bookmark_outlined,
-                                        color: Theme.of(context).primaryColor,
-                                      ),
-                                      onPressed: () {
-                                        deleteWord(
-                                            searchState.data!.word.toString());
-                                      },
-                                    );
-                                  }
-                                },
-                              ),
-                            ],
+                                  },
+                                  onSuggestionSelected:
+                                      (Map<String, String> suggestion) {
+                                    searchController.text = suggestion['name']!;
+                                    onSearch(context);
+                                  },
+                                )),
+                            // InkWell(
+                            //   onTap: () {
+                            //     onSearch(context);
+                            //     FocusScope.of(context).unfocus();
+                            //   },
+                            //   child: Container(
+                            //     color: Strings.appDarkBlue,
+                            //     height: 50,
+                            //     width: 55,
+                            //     child: const Icon(
+                            //       Icons.check,
+                            //       color: Color(0xFFFFFFFF),
+                            //     ),
+                            //   ),
+                            // )
+                          ],
+                        )),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    searchState.data == null
+                        ? const SizedBox()
+                        : SizedBox(
+                            width: 360,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                SelectableText(
+                                  "${searchState.data!.word}",
+                                  style: Theme.of(context).textTheme.headline1,
+                                ),
+                                Text(
+                                  searchState.data!.phonetics![0].text
+                                      .toString(),
+                                  style: Theme.of(context).textTheme.headline1,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                                IconButton(
+                                  onPressed: () {
+                                    player(searchState.data!.phonetics!);
+                                  },
+                                  icon: Icon(
+                                    Icons.volume_up_rounded,
+                                    color: Theme.of(context).primaryColor,
+                                  ),
+                                ),
+                                ValueListenableBuilder<Box<WordSave>>(
+                                  valueListenable:
+                                      Boxes.getWordToBox().listenable(),
+                                  builder: (context, box, _) {
+                                    list = box.values.toList().cast<WordSave>();
+                                    var contain = list.where((element) =>
+                                        element.word ==
+                                        searchState.data!.word.toString());
+                                    if (contain.isEmpty) {
+                                      return IconButton(
+                                        onPressed: () {
+                                          addWordToBox(
+                                              searchState.data!.word.toString(),
+                                              context);
+                                        },
+                                        icon: Icon(
+                                          Icons.bookmark_border,
+                                          color: Theme.of(context).primaryColor,
+                                        ),
+                                      );
+                                    } else {
+                                      return IconButton(
+                                        icon: Icon(
+                                          Icons.bookmark_outlined,
+                                          color: Theme.of(context).primaryColor,
+                                        ),
+                                        onPressed: () {
+                                          deleteWord(searchState.data!.word
+                                              .toString());
+                                        },
+                                      );
+                                    }
+                                  },
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                  Container(
-                    padding: EdgeInsets.all(20.w),
-                    child: searchState.data != null
-                        ? ListView.builder(
-                            padding: EdgeInsets.symmetric(horizontal: 20.w),
-                            physics: const BouncingScrollPhysics(
-                                parent: AlwaysScrollableScrollPhysics()),
-                            shrinkWrap: true,
-                            itemCount: searchState.data!.meanings!.length,
-                            itemBuilder: (context, i) {
-                              return Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  AppWidgets.sizeHeight10,
-                                  SelectableText(
-                                    '${searchState.data!.meanings![i].partOfSpeech}',
-                                    style:
-                                        Theme.of(context).textTheme.headline6,
-                                  ),
-                                  AppWidgets.sizeHeight10,
-                                  SelectableText(
-                                    '${searchState.data!.meanings![i].definitions![0].definition}',
-                                    style:
-                                        Theme.of(context).textTheme.bodyText1,
-                                  ),
-                                  searchState.data!.meanings![i].definitions![0]
-                                              .example !=
-                                          null
-                                      ? AppWidgets.sizeHeight10
-                                      : const SizedBox(),
-                                  searchState.data!.meanings![i].definitions![0]
-                                              .example !=
-                                          null
-                                      ? SelectableText(
-                                          'Example - ${searchState.data!.meanings![i].definitions![0].example}',
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyText1,
-                                        )
-                                      : const SizedBox(),
-                                ],
-                              );
-                            },
-                          )
-                        : LottieBuilder.asset('assets/meditating.json'),
-                  )
-                ],
+                    Container(
+                      padding: EdgeInsets.all(20),
+                      child: searchState.data != null
+                          ? ListView.builder(
+                              padding: EdgeInsets.symmetric(horizontal: 20),
+                              physics: const BouncingScrollPhysics(
+                                  parent: AlwaysScrollableScrollPhysics()),
+                              shrinkWrap: true,
+                              itemCount: searchState.data!.meanings!.length,
+                              itemBuilder: (context, i) {
+                                return Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    AppWidgets.sizeHeight10,
+                                    SelectableText(
+                                      '${searchState.data!.meanings![i].partOfSpeech}',
+                                      style:
+                                          Theme.of(context).textTheme.headline6,
+                                    ),
+                                    AppWidgets.sizeHeight10,
+                                    SelectableText(
+                                      '${searchState.data!.meanings![i].definitions![0].definition}',
+                                      style:
+                                          Theme.of(context).textTheme.bodyText1,
+                                    ),
+                                    searchState.data!.meanings![i]
+                                                .definitions![0].example !=
+                                            null
+                                        ? AppWidgets.sizeHeight10
+                                        : const SizedBox(),
+                                    searchState.data!.meanings![i]
+                                                .definitions![0].example !=
+                                            null
+                                        ? SelectableText(
+                                            'Example - ${searchState.data!.meanings![i].definitions![0].example}',
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyText1,
+                                          )
+                                        : const SizedBox(),
+                                  ],
+                                );
+                              },
+                            )
+                          : LottieBuilder.asset('assets/meditating.json'),
+                    )
+                  ],
+                ),
               ),
             );
           },

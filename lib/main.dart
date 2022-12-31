@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:one_dictionary/data/models/word_save_model.dart';
 import 'package:one_dictionary/logic/theme_cubit/theme_cubit.dart';
@@ -29,12 +28,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => ThemeCubit(),
-      child: ScreenUtilInit(
-        designSize: const Size(360, 690),
-        minTextAdapt: true,
-        splitScreenMode: true,
-        builder: (context, child) {
-          return BlocBuilder<ThemeCubit, ThemeState>(
+      child:BlocBuilder<ThemeCubit, ThemeState>(
             builder: (context, state) {
               return MaterialApp(
                 theme: AppTheme.lightTheme,
@@ -45,8 +39,7 @@ class App extends StatelessWidget {
                 onGenerateRoute: AppRouter.onGenerateRoute,
               );
             },
-          );
-        },
+         
       ),
     );
   }
