@@ -4,12 +4,6 @@ A simple dictionary app in flutter using bloc patern
 
 - [live link](https://shyamexe.github.io/Dictionary_app_flutter_using_bloc/#/)
 
-<iframe id="inlineFrameExample"
-      title="Inline Frame Example"
-      width="300"
-      height="200"
-      src="https://shyamexe.github.io/Dictionary_app_flutter_using_bloc/#/">
-  </iframe>
 
 
 ## Packages we are using
