@@ -2,9 +2,9 @@
 
 A simple dictionary app in flutter using bloc patern
 
-- [live link](https://shyamexe.github.io/Dictionary_app_flutter_using_bloc/#/)
+- [live link WEB](https://shyamexe.github.io/Dictionary_app_flutter_using_bloc/#/)
 
-
+[Download the latest release APK](https://github.com/shyamexe/Dictionary_app_flutter_using_bloc/releases/latest)
 
 ## Packages we are using
 
