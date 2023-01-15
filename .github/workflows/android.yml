@@ -32,8 +32,30 @@ jobs:
     - run: flutter test
     - run: flutter build apk
     - run: flutter build appbundle
-    - name: Upload APK
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.run_number }}
+        release_name: Release ${{ github.run_number }}
+        draft: false
+        prerelease: false
+
+    - name: Upload artifact
       uses: actions/upload-artifact@v2
       with:
         name: app-release.apk
         path: build/app/outputs/flutter-apk/app-release.apk
+        target_path: path/to/artifact
+        # target_path specify the location where the artifact should be uploaded
+      if: steps.create_release.outputs.upload_url
+    
+    
+    
+    # - name: Upload APK
+    #   uses: actions/upload-artifact@v2
+    #   with:
+    #     name: app-release.apk
+    #     path: build/app/outputs/flutter-apk/app-release.apk
