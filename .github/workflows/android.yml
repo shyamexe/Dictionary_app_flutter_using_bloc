@@ -29,9 +29,9 @@ jobs:
       with:
         java-version: 1.8
 
-    - name: Build and release APK
-      run: |
-        ./gradlew assembleRelease
+#     - name: Build and release APK
+#       run: |
+#         ./gradlew assembleRelease
       # env:
       #   ANDROID_HOME: ${{secrets.ANDROID_HOME}}
       #   KEYSTORE_FILE: ${{secrets.KEYSTORE_FILE}}
