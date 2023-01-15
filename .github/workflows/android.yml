@@ -32,12 +32,12 @@ jobs:
 #     - name: Build and release APK
 #       run: |
 #         ./gradlew assembleRelease
-      # env:
-      #   ANDROID_HOME: ${{secrets.ANDROID_HOME}}
-      #   KEYSTORE_FILE: ${{secrets.KEYSTORE_FILE}}
-      #   KEYSTORE_PASSWORD: ${{secrets.KEYSTORE_PASSWORD}}
-      #   KEY_ALIAS: ${{secrets.KEY_ALIAS}}
-      #   KEY_PASSWORD: ${{secrets.KEY_PASSWORD}}
+      env:
+        ANDROID_HOME: ${{secrets.ANDROID_HOME}}
+        KEYSTORE_FILE: ${{secrets.KEYSTORE_FILE}}
+        KEYSTORE_PASSWORD: ${{secrets.KEYSTORE_PASSWORD}}
+        KEY_ALIAS: ${{secrets.KEY_ALIAS}}
+        KEY_PASSWORD: ${{secrets.KEY_PASSWORD}}
         
     - name: Upload to GitHub Release
       uses: actions/upload-release-asset@v1
