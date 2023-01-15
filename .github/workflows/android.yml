@@ -28,8 +28,8 @@ jobs:
 #     - name: Sign APK
 #       run: jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore my-release-key.jks build/app/outputs/flutter-apk/app-release.apk alias_name
 
-    - name: Optimize APK
-      run: zipalign -v 4 build/app/outputs/flutter-apk/app-release.apk app-release-aligned.apk
+#     - name: Optimize APK
+#       run: zipalign -v 4 build/app/outputs/flutter-apk/app-release.apk app-release-aligned.apk
 
     - name: Upload to GitHub Releases
       uses: actions/upload-release-asset@v1
