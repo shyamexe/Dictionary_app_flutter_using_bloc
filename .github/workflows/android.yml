@@ -40,7 +40,7 @@ jobs:
       #   KEY_PASSWORD: ${{secrets.KEY_PASSWORD}}
         
     - name: Upload to GitHub Release
-      uses: actions/upload-release-asset@v2
+      uses: actions/upload-release-asset@v1
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
         asset_path: app/build/outputs/apk/release/*.apk
