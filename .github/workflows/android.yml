@@ -1,9 +1,8 @@
-name: Release
+name: android
 
 on:
   push:
-    branches:
-      - main
+    branches: [ master ]
 
 name: "Build & Release"
 jobs:
@@ -36,28 +35,3 @@ jobs:
           tag: v1.0.${{ github.run_number }}
           token: ${{ secrets.TOKEN }}
 
-# jobs:
-#   build:
-#     runs-on: ubuntu-latest
-#     steps:
-#     - name: Checkout code
-#       uses: actions/checkout@v2
-
-#     - name: Build release APK
-#       run: flutter build apk --release
-
-#     - name: Sign APK
-#       run: jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore my-release-key.jks build/app/outputs/apk/release/app-release.apk alias_name
-
-#     - name: Optimize APK
-#       run: zipalign -v 4 build/app/outputs/apk/release/app-release.apk app-release-aligned.apk
-
-#     - name: Upload to GitHub Releases
-#       uses: actions/upload-release-asset@v1
-#       env:
-#         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#       with:
-#         upload_url: ${{ steps.create_release.outputs.upload_url }}
-#         asset_path: app-release-aligned.apk
-#         asset_name: app-release-aligned.apk
-#         asset_content_type: application/vnd.android.package-archive
