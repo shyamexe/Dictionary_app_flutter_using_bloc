@@ -1,11 +1,9 @@
-name: android
+name: "Build & Release APK"
 
 on:
   push:
-    branches:
-      - master
+    branches: [ master ]
 
-name: "Build & Release"
 jobs:
   build:
     name: Build & Release
