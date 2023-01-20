@@ -2,7 +2,8 @@ name: android
 
 on:
   push:
-    branches: [ master ]
+    branches:
+      - master
 
 name: "Build & Release"
 jobs:
