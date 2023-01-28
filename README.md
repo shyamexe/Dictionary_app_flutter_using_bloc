@@ -2,7 +2,7 @@
 
 This is a dictionary app built with flutter using the bloc pattern. It uses the Dictionary API and Datamuse API to fetch data. The app has features like audio pronunciation, synonyms, antonyms, examples and share options. It also has a dark mode feature.
 
-- [live link WEB](https://shyamexe.github.io/Dictionary_app_flutter_using_bloc/#/)
+- [live link(WEB)](https://shyamexe.github.io/Dictionary_app_flutter_using_bloc/#/)
 
 
 ## Packages we are using
@@ -25,13 +25,17 @@ This is a dictionary app built with flutter using the bloc pattern. It uses the 
 
 <table>
   <td>
-   <img src="https://user-images.githubusercontent.com/93277108/155730025-5931a457-b82c-40cf-a3fd-65b21f706013.gif">
+   <img src="https://user-images.githubusercontent.com/93277108/215252832-4c97c09a-cfa0-451d-bec7-9f0067f860c1.gif">
   </td>
   <td>
-   <img src="https://user-images.githubusercontent.com/93277108/155725698-c4ab9ca9-e90b-4867-8077-74dab1f95cef.gif">
+   <img src="https://user-images.githubusercontent.com/93277108/215252874-d6b902b8-9ace-41ac-947b-8c2b00e58d68.gif">
   </td>
   <td>
-   <img src="https://user-images.githubusercontent.com/93277108/155725225-b46c69d5-3e6b-41a2-8eb7-21b5ad4063a0.gif">
+   <img src="https://user-images.githubusercontent.com/93277108/215252936-a8b7cfe8-65c3-4822-97e0-807ebc22bb85.gif">
+  </td>
+  </td>
+  <td>
+   <img src="https://user-images.githubusercontent.com/93277108/215252979-613061ba-0738-4322-8898-184c4f5b1578.gif">
   </td>
   
   
