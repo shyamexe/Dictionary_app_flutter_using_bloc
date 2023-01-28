@@ -33,7 +33,6 @@ This is a dictionary app built with flutter using the bloc pattern. It uses the 
   <td>
    <img src="https://user-images.githubusercontent.com/93277108/215252936-a8b7cfe8-65c3-4822-97e0-807ebc22bb85.gif">
   </td>
-  </td>
   <td>
    <img src="https://user-images.githubusercontent.com/93277108/215252979-613061ba-0738-4322-8898-184c4f5b1578.gif">
   </td>
