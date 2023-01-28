@@ -65,6 +65,32 @@ flutter run
 6. Enjoy the app!
 
 
+## Contributing
+
+1. Create a new branch for your changes:
+
+```
+git checkout -b my-new-feature
+```
+
+2. Make your changes and commit them:
+
+```
+git commit -am "Add new feature"
+```
+
+3. Push the branch to your fork:
+
+```
+git push origin my-new-feature
+```
+
+4. Open a pull request on the [original repository](https://github.com/shyamexe/Dictionary_app_flutter_using_bloc) for the changes to be reviewed and potentially merged.
+
+Note: If you encounter any issues or have questions, feel free to open an issue on the GitHub repository.
+
+You can also use Github UI for forking by simply clicking on fork button.
+
 <!-- A few resources to get you started if this is your first Flutter project:
 
 - [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
