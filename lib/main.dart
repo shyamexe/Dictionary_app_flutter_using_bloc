@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:one_dictionary/data/models/word_save_model.dart';
@@ -17,7 +18,8 @@ void main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(WordSaveAdapter());
   await Hive.openBox<WordSave>('WordSave');
-
+  SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   runApp(const App());
 }
 
@@ -28,18 +30,17 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => ThemeCubit(),
-      child:BlocBuilder<ThemeCubit, ThemeState>(
-            builder: (context, state) {
-              return MaterialApp(
-                theme: AppTheme.lightTheme,
-                darkTheme: AppTheme.darkTheme,
-                themeMode: theme[state.theme],
-                debugShowCheckedModeBanner: false,
-                initialRoute: AppRouter.home,
-                onGenerateRoute: AppRouter.onGenerateRoute,
-              );
-            },
-         
+      child: BlocBuilder<ThemeCubit, ThemeState>(
+        builder: (context, state) {
+          return MaterialApp(
+            theme: AppTheme.lightTheme,
+            darkTheme: AppTheme.darkTheme,
+            themeMode: theme[state.theme],
+            debugShowCheckedModeBanner: false,
+            initialRoute: AppRouter.home,
+            onGenerateRoute: AppRouter.onGenerateRoute,
+          );
+        },
       ),
     );
   }
