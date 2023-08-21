@@ -23,9 +23,9 @@ class HomeScreen extends StatelessWidget {
 
   onSearch(context) {
     if (searchController.text.isNotEmpty) {
-      if (searchController.text.length>=3) {
+      if (searchController.text.length >= 3) {
         BlocProvider.of<SearchWordCubit>(context)
-          .storeData(searchController.text);
+            .storeData(searchController.text);
       }
     }
   }
@@ -80,7 +80,7 @@ class HomeScreen extends StatelessWidget {
         continue;
       }
     }
-    await audioPlayer.play(url ?? "");
+    await audioPlayer.play(UrlSource(url ?? ""));
   }
 
   List<WordSave> list = [];
@@ -220,7 +220,6 @@ class HomeScreen extends StatelessWidget {
                                       ),
                                     );
                                   },
-                                  
                                   onSuggestionSelected:
                                       (Map<String, String> suggestion) {
                                     print(suggestion['name']);
@@ -260,7 +259,10 @@ class HomeScreen extends StatelessWidget {
                                   style: Theme.of(context).textTheme.headline1,
                                 ),
                                 Text(
-                                  (searchState.data!.phonetics!.isNotEmpty)?searchState.data!.phonetics![0].text??'':'',
+                                  (searchState.data!.phonetics!.isNotEmpty)
+                                      ? searchState.data!.phonetics![0].text ??
+                                          ''
+                                      : '',
                                   style: Theme.of(context).textTheme.headline1,
                                   overflow: TextOverflow.ellipsis,
                                 ),
