@@ -2,7 +2,7 @@ name: "Build & Release APK"
 
 on:
   push:
-    branches: [ deploy ]
+    branches: [ deployd ]
 
 jobs:
   build:
