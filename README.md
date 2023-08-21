@@ -2,7 +2,7 @@
 
 This is a dictionary app built with flutter using the bloc pattern. It uses the Dictionary API and Datamuse API to fetch data. The app has features like audio pronunciation, synonyms, antonyms, examples and share options. It also has a dark mode feature.
 
-- [live link(WEB)](https://shyamexe.github.io/Dictionary_app_flutter_using_bloc/#/)
+- [live link(WEB)](https://one-dictionary.web.app)
 
 
 ## Packages we are using
