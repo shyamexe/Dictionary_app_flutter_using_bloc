@@ -23,9 +23,16 @@ class HomeScreen extends StatelessWidget {
 
   onSearch(context) {
     if (searchController.text.isNotEmpty) {
-      BlocProvider.of<SearchWordCubit>(context)
+      if (searchController.text.length>=3) {
+        BlocProvider.of<SearchWordCubit>(context)
           .storeData(searchController.text);
+      }
     }
+  }
+
+  onOptionSearch(context, String? word) {
+    searchController.text = word ?? '';
+    BlocProvider.of<SearchWordCubit>(context).storeData(word);
   }
 
   void createSnackBar(
@@ -198,6 +205,7 @@ class HomeScreen extends StatelessWidget {
                                         hintText: 'Search'),
                                   ),
                                   suggestionsCallback: (pattern) async {
+                                    print(pattern);
                                     return await BackendService.getSuggestions(
                                         pattern);
                                   },
@@ -212,10 +220,12 @@ class HomeScreen extends StatelessWidget {
                                       ),
                                     );
                                   },
+                                  
                                   onSuggestionSelected:
                                       (Map<String, String> suggestion) {
+                                    print(suggestion['name']);
                                     searchController.text = suggestion['name']!;
-                                    onSearch(context);
+                                    onOptionSearch(context, suggestion['name']);
                                   },
                                 )),
                             // InkWell(
@@ -250,8 +260,7 @@ class HomeScreen extends StatelessWidget {
                                   style: Theme.of(context).textTheme.headline1,
                                 ),
                                 Text(
-                                  searchState.data!.phonetics![0].text
-                                      .toString(),
+                                  (searchState.data!.phonetics!.isNotEmpty)?searchState.data!.phonetics![0].text??'':'',
                                   style: Theme.of(context).textTheme.headline1,
                                   overflow: TextOverflow.ellipsis,
                                 ),

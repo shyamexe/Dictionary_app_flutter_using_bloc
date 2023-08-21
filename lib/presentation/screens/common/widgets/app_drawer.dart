@@ -31,6 +31,7 @@ class AppDrawer extends StatelessWidget {
                     height: 130,
                   ),
                   ExpansionTile(
+                    initiallyExpanded: true,
                     title: Text(
                       'Theme',
                       style: Theme.of(context).textTheme.bodyText2,

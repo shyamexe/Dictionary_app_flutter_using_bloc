@@ -1,3 +1,4 @@
+import 'package:device_frame/device_frame.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
@@ -17,32 +18,18 @@ class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    // if (false) {
     if (size.width > 600) {
       return Scaffold(
         body: Center(
-          child: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(5),
-              color: Theme.of(context).canvasColor,
-              boxShadow: [
-                BoxShadow(
-                  offset: Offset(2,2),
-                  color: Theme.of(context).backgroundColor.withOpacity(.2),
-                  blurRadius: 2,
-                  spreadRadius: 5
-                )
-              ]
-            ),
-            padding: const EdgeInsets.only(
-              bottom: 15,
-              top: 5,
-              left: 5,
-              right: 5,
-            ),
-            child: SizedBox(
-              width: 360,
-              height: 690,
-              child: MainWidget(),
+          child: SizedBox(
+            width: 360,
+            height: 690,
+            child: DeviceFrame(
+              device: Devices.ios.iPhone13ProMax,
+              isFrameVisible: true,
+              orientation: Orientation.portrait,
+              screen: MainWidget(),
             ),
           ),
         ),
@@ -109,14 +96,16 @@ class MainWidget extends StatelessWidget {
             ),
             child: SafeArea(
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
                 child: GNav(
                   rippleColor: Theme.of(context).focusColor,
                   hoverColor: Theme.of(context).hoverColor,
                   gap: 8,
                   activeColor: Theme.of(context).primaryColor,
                   iconSize: 18,
-                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                   duration: const Duration(milliseconds: 400),
                   tabBackgroundColor: Theme.of(context).bottomAppBarColor,
                   color: Theme.of(context).primaryColor,
@@ -129,13 +118,13 @@ class MainWidget extends StatelessWidget {
                     ),
                     const GButton(
                       icon: Icons.search,
-                      text: 'Likes',
+                      text: 'Search',
                       iconSize: 18,
                       textSize: 10,
                     ),
                     const GButton(
-                      icon: Icons.bookmarks_outlined,
-                      text: 'Search',
+                      icon: Icons.favorite_border_outlined,
+                      text: 'Saved',
                       iconSize: 18,
                       textSize: 10,
                     ),
