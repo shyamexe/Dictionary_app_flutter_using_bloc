@@ -17,13 +17,12 @@ jobs:
 
       - uses: subosito/flutter-action@v2
         with:
-          channel: 'stable'
-      - run: flutter pub get
-      - run: flutter build apk --release --split-per-abi
+          flutter-version: '3.7.8'
+      - run: flutter build apk --release #--split-per-abi
 
       - name: Push to Releases
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "build/app/outputs/apk/release/*"
+          artifacts: "build/app/outputs/flutter-apk/*"
           tag: v1.0.${{ github.run_number }}
           token: ${{ secrets.TOKEN }}
